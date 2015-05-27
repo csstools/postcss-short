@@ -1,0 +1,29 @@
+{
+  "name": "postcss-short",
+  "version": "0.1.0",
+  "description": "Write short, sweet CSS.",
+  "keywords": [
+    "postcss",
+    "css",
+    "size",
+    "width",
+    "height",
+    "margin",
+    "padding",
+    "position",
+    "font",
+    "font weight",
+    "before",
+    "after",
+    "around"
+  ],
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "CC0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonathantneal/postcss-short.git"
+  },
+  "dependencies": {
+    "postcss": "^4.1.4"
+  }
+}
