@@ -32,6 +32,8 @@ Rendered CSS:
 }
 ```
 
+The `size` property allows shorthand for (in order) `width` and `height`.
+
 ## margin and padding
 
 Use `margin` and `padding` without writing over previous declarations. The asterisk (**\***) value tells the processor ignore that particular declaration.
@@ -109,27 +111,21 @@ Rendered CSS:
 }
 ```
 
+The `position` property allows shorthand for `position`, `top`, `right`, `bottom`, and `left`.
+
 ## font weight
 
 Use the full range of font weight proper names.
 
 Short CSS:
 ```css
-.usage-1 {
-	font: light italic "Helvetica Neue";
-}
-
-.usage-2 {
+.usage {
 	font-weight: medium;
 }
 ```
 Rendered CSS:
 ```css
-.usage-1 {
-	font: 300 italic "Helvetica Neue";
-}
-
-.usage-2 {
+.usage {
 	font-weight: 500;
 }
 ```
@@ -140,34 +136,39 @@ Keep text related properties together.
 
 Short CSS:
 ```css
-.usage-1 {
-	text: red uppercase underline Arial;
-}
-
-.usage-2 {
-	text: thin center grey lowercase optimizeLegibility 1rem 1.25 .25em .1em "Helvetica Neue";
+.usage {
+	text: thin center uppercase 1rem 1.25 .5em sans-serif;
 }
 ```
 Rendered CSS:
 ```css
-.usage-1 {
-	color: #ff0000;
-	text-transform: uppercase;
-	text-decoration: underline;
-	font-family: Arial;
-}
-
-.usage-2 {
+.usage {
 	font-weight: 100;
 	text-align: center;
-	color: #808080;
-	text-transform: lowercase;
-	text-rendering: optimizeLegibility;
+	text-transform: uppercase;
 	font-size: 1rem;
 	line-height: 1.25;
 	letter-spacing: .25em;
-	word-spacing: .1em;
-	font-family: "Helvetica Neue";
+	font-family: sans-serif;
+}
+```
+
+The `text` property allows shorthand for (in order) `color`, `font-style`, `font-variant`, `font-weight`, `font-stretch`, `text-decoration`, `text-align`, `text-rendering`, `text-transform`, `white-space`], `font-size`, `line-height`, `letter-spacing`, `word-spacing`, and `font-family`.
+
+### :over
+
+Target `:focus` and `:hover` with one pseudo state.
+
+Short CSS:
+```css
+.usage:over {
+	background-color: #00f;
+}
+```
+Rendered CSS:
+```css
+.usage:focus, .usage:hover {
+	background-color: #00f;
 }
 ```
 
