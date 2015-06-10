@@ -2,177 +2,196 @@
 
 <img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
 
-[Short] is a [PostCSS] plugin that allows you to write short, sweet CSS.
+[Short] is a [PostCSS] plugin that helps you write shorter and more readable CSS by allowing you to combine related properties together while helping you avoid overrides.
 
-## size
+---
 
-Combine width and height properties into one easy `size` property.
+Use the asterisk (`*`) to avoid overrides in shorthand CSS properties like `margin` and `padding`.
 
-Short CSS:
 ```css
-.usage-1 {
-	size: 10px;
+/* short css: */
+
+.container {
+	margin: * auto;
 }
 
-.usage-2 {
-	size: 20px 10px;
+/* renders as: */
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
 }
 ```
 
-Rendered CSS:
+Extend the `position` property to allow shorthand values for `top`, `right`, `bottom`, and `left`.
+
 ```css
-.usage-1 {
-	width: 10px;
-	height: 10px;
-}
+/* short css: */
 
-.usage-2 {
-	width: 20px;
-	height: 10px;
-}
-```
-
-The `size` property allows shorthand for (in order) `width` and `height`.
-
-## margin and padding
-
-Use `margin` and `padding` without writing over previous declarations. The asterisk (**\***) value tells the processor ignore that particular declaration.
-
-Short CSS:
-```css
-.usage-1 {
-	margin: 10px *;
-	padding: * 15px;
-}
-
-.usage-2 {
-	margin: 10px 20px *;
-	padding: 10px * 10px 20px;
-}
-```
-
-Rendered CSS:
-```css
-.usage-1 {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding-right: 20px;
-	padding-left: 20px;
-}
-
-.usage-2 {
-	margin-top: 10px;
-	margin-right: 20px;
-	margin-left: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 20px;
-}
-```
-
-## position
-
-Improve readability by keeping position values together. As before, the asterisk (**\***) value can be used to tell CSS to ignore that particular declaration.
-
-Short CSS:
-```css
-.usage-1 {
+.overlay {
 	position: absolute 0;
 }
 
-.usage-2 {
-	position: fixed 0 0 *;
-}
+/* renders as: */
 
-.usage-3 {
-	position: 10px * 5px;
-}
-```
-Rendered CSS:
-```css
-.usage-1 {
+.overlay {
 	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
 }
+```
 
-.usage-2 {
+The shorthand `position` property uses [1-to-4-value syntax] like `margin` and `padding`, and also allows the asterisk (`*`) to avoid overrides.
+
+---
+
+Use the `size` property as a shorthand for `width` and `height`.
+
+```css
+/* short css: */
+
+.avatar {
+	size: 32px;
+}
+
+.avatar.portrait {
+	size: 32px 48px;
+}
+
+/* renders as: */
+
+.avatar {
+	width: 32px;
+	height: 32px;
+}
+
+.avatar.portrait {
+	width: 32px;
+	height: 48px;
+}
+```
+
+The shorthand `size` property measures `width` then `height`, and also allows the asterisk (`*`) to avoid overrides.
+
+---
+
+Now, put it all together and write short, clear code.
+
+```css
+/* short css: */
+
+.banner {
+	position: fixed 0 0 *;
+	size: 100% 48px;
+}
+
+/* renders as: */
+
+.banner {
 	position: fixed;
 	top: 0;
 	right: 0;
 	left: 0;
-}
-
-.usage-3 {
-	top: 10px;
-	bottom: 5px;
+	width: 100%;
+	height: 48px;
 }
 ```
 
-The `position` property allows shorthand for `position`, `top`, `right`, `bottom`, and `left`.
+---
 
-## font weight
+Use the shorthand `:over` pseudo-class to target `:focus` and `:hover`.
 
-Use the full range of font weight proper names.
-
-Short CSS:
 ```css
-.usage {
+/* short css: */
+
+.button:over {
+	background-color: blue;
+}
+
+/* renders as: */
+
+.button:focus,
+.button:hover {
+	background-color: blue;
+}
+```
+
+---
+
+Next, use `font-weight` values beyond `normal` and `bold`.
+
+```css
+/* short css: */
+
+h3 {
 	font-weight: medium;
 }
-```
-Rendered CSS:
-```css
-.usage {
+
+p {
+	font-weight: light;
+}
+
+/* renders as: */
+
+h3 {
 	font-weight: 500;
 }
-```
 
-## text
-
-Keep text related properties together.
-
-Short CSS:
-```css
-.usage {
-	text: thin center uppercase 1rem 1.25 .5em sans-serif;
+p {
+	font-weight: 300;
 }
 ```
-Rendered CSS:
+
+Combine related `text` properties together.
+
 ```css
-.usage {
+/* short css: */
+
+.heading {
+	text: thin center uppercase 1.25rem sans-serif;
+}
+
+/* renders as: */
+
+.heading {
 	font-weight: 100;
 	text-align: center;
 	text-transform: uppercase;
-	font-size: 1rem;
-	line-height: 1.25;
-	letter-spacing: .25em;
+	font-size: 1.25rem;
 	font-family: sans-serif;
 }
 ```
 
-The `text` property allows shorthand for (in order) `color`, `font-style`, `font-variant`, `font-weight`, `font-stretch`, `text-decoration`, `text-align`, `text-rendering`, `text-transform`, `white-space`], `font-size`, `line-height`, `letter-spacing`, `word-spacing`, and `font-family`.
+The `text` property shorthands all text-related properties. This includes `color`, `font-style`, `font-variant`, `font-weight`, `font-stretch`, `text-decoration`, `text-align`, `text-rendering`, `text-transform`, `white-space`, `font-size`, `line-height`, `letter-spacing`, `word-spacing`, and `font-family`.
 
-### :over
+Take advantage of this property.
 
-Target `:focus` and `:hover` with one pseudo state.
-
-Short CSS:
 ```css
-.usage:over {
-	background-color: #00f;
+/* short css: */
+
+.heading {
+	text: .75rem 1.5 .1em;
+}
+
+/* renders as: */
+
+.heading {
+	font-size: 1.25rem;
+	line-height: 1.5;
+	letter-spacing: .1em;
 }
 ```
-Rendered CSS:
-```css
-.usage:focus, .usage:hover {
-	background-color: #00f;
-}
-```
 
-## Usage
+---
+
+## Installation
+
+You just need to follow these two steps to use shorts:
+
+1. Add [PostCSS] to your build tool.
+2. Add **Short** to your PostCSS process.
 
 ### Node
 
@@ -201,3 +220,4 @@ See [PostCSS] docs for examples for your environment.
 
 [Short]: https://github.com/jonathantneal/postcss-short
 [PostCSS]: https://github.com/postcss/postcss
+[1-to-4-value syntax]: https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases
