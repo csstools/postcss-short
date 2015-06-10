@@ -199,6 +199,13 @@ You just need to follow these two steps to use shorts:
 postcss([ require('postcss-short') ]);
 ```
 
+or:
+```js
+postcss([ require('postcss-short')({
+	prefix: 'postcss' // defines a prefix (-postcss-) to prevent clashes
+}) ]);
+```
+
 ### Grunt
 
 ```js
@@ -208,6 +215,24 @@ grunt.initConfig({
 	postcss: {
 		options: {
 			processors: [short]
+		},
+		dist: {
+			src: 'build/*.css'
+		}
+	}
+});
+```
+
+or:
+```js
+var short = require('postcss-short');
+
+grunt.initConfig({
+	postcss: {
+		options: {
+			processors: [short({
+				prefix: 'postcss' // defines a prefix (-postcss-) to prevent clashes
+			})]
 		},
 		dist: {
 			src: 'build/*.css'
