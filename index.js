@@ -5,7 +5,9 @@ var space = postcss.list.space;
 var vars = require('./index.vars.js');
 var push = Array.prototype.push;
 
-module.exports = postcss.plugin('short', function () {
+module.exports = postcss.plugin('short', function (opts) {
+	opts = opts || {};
+
 	return function (css) {
 		// get formatted, spaced values
 		function getFormattedSpacedValues(value, map) {
@@ -140,20 +142,25 @@ module.exports = postcss.plugin('short', function () {
 			});
 		}
 
+		// create a prefixed string
+		function prefix(string) {
+			return opts.prefix ? '-' + opts.prefix + '-' + string : string;
+		}
+
 		// create alternate selectors
-		createAlternateSelectors(/\b:over\b/, [':focus', ':hover']);
-		createAlternateSelectors(/\b::around\b/, '::before ::after');
+		createAlternateSelectors(new RegExp('\\b::' + prefix('around') + '\\b'), ['::before', '::after']);
+		createAlternateSelectors(new RegExp('\\b:' + prefix('over') + '\\b'), [':focus', ':hover']);
 
 		// create alternate declarations
-		createAlternateDeclarations('margin', ['margin-top', 'margin-right', 'margin-bottom', 'margin-left'], [0, 0, 0, 1]);
-		createAlternateDeclarations('max-size', ['max-width', 'max-height'], [0, 0]);
-		createAlternateDeclarations('min-size', ['min-width', 'min-height'], [0, 0]);
-		createAlternateDeclarations('padding', ['padding-top', 'padding-right', 'padding-bottom', 'padding-left'], [0, 0, 0, 1]);
-		createAlternateDeclarations('position', ['position', 'top', 'right', 'bottom', 'left'], [0, 1, 1, 1, 2]);
-		createAlternateDeclarations('size', ['width', 'height'], [0, 0]);
+		createAlternateDeclarations(prefix('margin'), ['margin-top', 'margin-right', 'margin-bottom', 'margin-left'], [0, 0, 0, 1]);
+		createAlternateDeclarations(prefix('max-size'), ['max-width', 'max-height'], [0, 0]);
+		createAlternateDeclarations(prefix('min-size'), ['min-width', 'min-height'], [0, 0]);
+		createAlternateDeclarations(prefix('padding'), ['padding-top', 'padding-right', 'padding-bottom', 'padding-left'], [0, 0, 0, 1]);
+		createAlternateDeclarations(prefix('position'), ['position', 'top', 'right', 'bottom', 'left'], [0, 1, 1, 1, 2]);
+		createAlternateDeclarations(prefix('size'), ['width', 'height'], [0, 0]);
 
 		// create expanded declarations
-		createExpandedDeclarations('text', [['color', 'font-style', 'font-variant', 'font-weight', 'font-stretch', 'text-decoration', 'text-align', 'text-rendering', 'text-transform', 'white-space'], ['font-size'], ['line-height'], ['letter-spacing'], ['word-spacing'], ['font-family']]);
+		createExpandedDeclarations(prefix('text'), [['color', 'font-style', 'font-variant', 'font-weight', 'font-stretch', 'text-decoration', 'text-align', 'text-rendering', 'text-transform', 'white-space'], ['font-size'], ['line-height'], ['letter-spacing'], ['word-spacing'], ['font-family']]);
 
 		// create expanded values
 		createExpandedValue('color');
