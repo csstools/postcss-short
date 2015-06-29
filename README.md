@@ -1,93 +1,29 @@
-# PostCSS Short
+# PostCSS Short [![Build Status][ci-img]][ci]
 
 <img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
 
-[Short] is a [PostCSS] plugin that helps you write shorter and more readable CSS by allowing you to combine related properties together while helping you avoid overrides.
+[PostCSS Short] is a [PostCSS] plugin that allows that extends shorthand properties in CSS.
 
----
-
-Use the asterisk (`*`) to avoid overrides in shorthand CSS properties like `margin` and `padding`.
+Shorthand properties allow you write more concise and often more readable style sheets, saving time and energy.
 
 ```css
-/* short css: */
-
-.container {
-	margin: * auto;
-}
-
-/* renders as: */
-
-.container {
-	margin-left: auto;
-	margin-right: auto;
-}
-```
-
-Extend the `position` property to allow shorthand values for `top`, `right`, `bottom`, and `left`.
-
-```css
-/* short css: */
-
-.overlay {
-	position: absolute 0;
-}
-
-/* renders as: */
-
-.overlay {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
-```
-
-The shorthand `position` property uses [1-to-4-value syntax] like `margin` and `padding`, and also allows the asterisk (`*`) to avoid overrides.
-
----
-
-Use the `size` property as a shorthand for `width` and `height`.
-
-```css
-/* short css: */
-
-.avatar {
-	size: 32px;
-}
-
-.avatar.portrait {
-	size: 32px 48px;
-}
-
-/* renders as: */
-
-.avatar {
-	width: 32px;
-	height: 32px;
-}
-
-.avatar.portrait {
-	width: 32px;
-	height: 48px;
-}
-```
-
-The shorthand `size` property measures `width` then `height`, and also allows the asterisk (`*`) to avoid overrides.
-
----
-
-Now, put it all together and write short, clear code.
-
-```css
-/* short css: */
+/* before */
 
 .banner {
 	position: fixed 0 0 *;
 	size: 100% 48px;
 }
 
-/* renders as: */
+.section {
+	margin: 40px;
+	text: bold center uppercase dimgrey 1.25em 1.5 .05em;
+}
+
+.section.inset {
+	margin: * auto;
+}
+
+/* after */
 
 .banner {
 	position: fixed;
@@ -97,152 +33,94 @@ Now, put it all together and write short, clear code.
 	width: 100%;
 	height: 48px;
 }
-```
 
----
-
-Use the shorthand `:over` pseudo-class to target `:focus` and `:hover`.
-
-```css
-/* short css: */
-
-.button:over {
-	background-color: blue;
-}
-
-/* renders as: */
-
-.button:focus,
-.button:hover {
-	background-color: blue;
-}
-```
-
----
-
-Next, use `font-weight` values beyond `normal` and `bold`.
-
-```css
-/* short css: */
-
-h3 {
-	font-weight: medium;
-}
-
-p {
-	font-weight: light;
-}
-
-/* renders as: */
-
-h3 {
-	font-weight: 500;
-}
-
-p {
-	font-weight: 300;
-}
-```
-
-Combine related `text` properties together.
-
-```css
-/* short css: */
-
-.heading {
-	text: thin center uppercase 1.25rem sans-serif;
-}
-
-/* renders as: */
-
-.heading {
-	font-weight: 100;
+.section {
+	margin: 40px;
+	color: dimgrey;
+	font-weight: bold;
 	text-align: center;
 	text-transform: uppercase;
-	font-size: 1.25rem;
-	font-family: sans-serif;
-}
-```
-
-The `text` property shorthands all text-related properties. This includes `color`, `font-style`, `font-variant`, `font-weight`, `font-stretch`, `text-decoration`, `text-align`, `text-rendering`, `text-transform`, `white-space`, `font-size`, `line-height`, `letter-spacing`, `word-spacing`, and `font-family`.
-
-Take advantage of this property.
-
-```css
-/* short css: */
-
-.heading {
-	text: .75rem 1.5 .1em;
-}
-
-/* renders as: */
-
-.heading {
-	font-size: 1.25rem;
+	font-size: 1.25em;
 	line-height: 1.5;
-	letter-spacing: .1em;
+	letter-spacing: .05em;
+}
+
+.section.inset {
+	margin-right: 0;
+	margin-left: 0;
 }
 ```
 
----
+- The asterisk (`*`) value prevents the overriding of a previous value.
+- The `position` property uses the same [1-to-4-value syntax] as `margin` and `padding`.
+- The `text` property shorthands text-related properties, including `color`, `font-style`, `font-variant`, `font-weight`, `font-stretch`, `text-decoration`, `text-align`, `text-rendering`, `text-transform`, `white-space`, `font-size`, `line-height`, `letter-spacing`, `word-spacing`, and `font-family`.
+- Shorthands are processed for `margin`, `padding`, `position`, `size`, `min-size`, `max-size`, and `text`.
 
-## Installation
+## Usage
 
-You just need to follow these two steps to use shorts:
+You just need to follow these two steps to use [PostCSS Short]:
 
 1. Add [PostCSS] to your build tool.
-2. Add **Short** to your PostCSS process.
+2. Add [PostCSS Short] as a PostCSS process.
+
+```sh
+npm install postcss-short --save-dev
+```
 
 ### Node
 
 ```js
-postcss([ require('postcss-short') ]);
-```
-
-or:
-```js
-postcss([ require('postcss-short')({
-	prefix: 'postcss' // defines a prefix (-postcss-) to prevent clashes
-}) ]);
+postcss([ require('postcss-short')(/* options */) ])
 ```
 
 ### Grunt
 
+Install [Grunt PostCSS]:
+
+```shell
+npm install postcss-short --save-dev
+```
+
+Enable [PostCSS Short] within your Gruntfile:
+
 ```js
-var short = require('postcss-short');
+grunt.loadNpmTasks('grunt-postcss');
 
 grunt.initConfig({
 	postcss: {
 		options: {
-			processors: [short]
+			processors: [
+				require('postcss-short')(/* options */)
+			]
 		},
 		dist: {
-			src: 'build/*.css'
+			src: 'css/*.css'
 		}
 	}
 });
 ```
 
-or:
-```js
-var short = require('postcss-short');
+### Options
 
-grunt.initConfig({
-	postcss: {
-		options: {
-			processors: [short({
-				prefix: 'postcss' // defines a prefix (-postcss-) to prevent clashes
-			})]
-		},
-		dist: {
-			src: 'build/*.css'
-		}
-	}
-});
+**prefix** (String, Object): prepends a prefix (surrounded by dashes) to the property. This may be useful for preventing clashes with any future syntax.
+
+```js
+{
+	prefix: 's' // properties with -s- prefix are processed by postcss-short
+}
 ```
 
-See [PostCSS] docs for examples for your environment.
+```js
+{
+	prefix: {
+		'text': 's' // the '-s-text' property is processed by postcss-short
+	}
+}
+```
 
-[Short]: https://github.com/jonathantneal/postcss-short
-[PostCSS]: https://github.com/postcss/postcss
 [1-to-4-value syntax]: https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases
+[ci]: https://travis-ci.org/jonathantneal/postcss-short
+[ci-img]: https://travis-ci.org/jonathantneal/postcss-short.svg
+[Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
+[PostCSS]: https://github.com/postcss/postcss
+[PostCSS Short]: https://github.com/jonathantneal/postcss-short
