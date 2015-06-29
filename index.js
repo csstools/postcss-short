@@ -66,7 +66,7 @@ module.exports = postcss.plugin('postcss-asterisk', function (opts) {
 	};
 
 	Object.keys(transforms).forEach(function (key) {
-		if ((!opts.allowed || opts.allowed[key]) && (!opts.denied || !opts.denied[key])) {
+		if ((!opts.allowed || opts.allowed.indexOf(key) !== -1) && (!opts.denied || opts.denied.indexOf(key) === -1)) {
 			var prefix = opts.prefix ? typeof opts.prefix === 'string' && opts.prefix || String(opts.prefix[key]) : false;
 
 			if (prefix) {
