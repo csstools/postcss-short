@@ -102,18 +102,25 @@ grunt.initConfig({
 
 ### Options
 
-**prefix** (String, Object): prepends a prefix (surrounded by dashes) to the property. This may be useful for preventing clashes with any future syntax.
+**allow** (`Array`): If specified, only properties explicitly allowed will be processed.
+
+**deny** (`Array`): If specified, deny specific properties from being processed.
+
+**prefix** (`String`, `Object`): prepends a prefix (surrounded by dashes) to the property. This may be useful for preventing clashes with any future syntax.
+
 
 ```js
 {
-	prefix: 's' // properties with -s- prefix are processed by postcss-short
+	deny: ['text'], // do not process the text property
+	prefix: 's' // process properties with the -s- prefix
 }
 ```
 
 ```js
 {
+	allow: ['text'], // only process the text property
 	prefix: {
-		'text': 's' // the '-s-text' property is processed by postcss-short
+		'text': 's' // process the prefixed '-s-text' property
 	}
 }
 ```
