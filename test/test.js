@@ -15,7 +15,7 @@ var test = function (input, output, opts, done) {
 	});
 };
 
-describe('postcss-asterisk: margin', function () {
+describe('postcss-short: margin', function () {
 	// 1 value
 	it('1 length value', function (done) {
 		test('a{ margin: 100px; }', 'a{ margin: 100px; }', { }, done);
@@ -81,7 +81,7 @@ describe('postcss-asterisk: margin', function () {
 	});
 });
 
-describe('postcss-asterisk: padding', function () {
+describe('postcss-short: padding', function () {
 	// 1 value
 	it('1 length value', function (done) {
 		test('a{ padding: 100px; }', 'a{ padding: 100px; }', { }, done);
@@ -147,7 +147,7 @@ describe('postcss-asterisk: padding', function () {
 	});
 });
 
-describe('postcss-asterisk: position', function () {
+describe('postcss-short: position', function () {
 	// 1 value
 	it('1 position value', function (done) {
 		test('a{ position: absolute; }', 'a{ position: absolute; }', { }, done);
@@ -247,17 +247,9 @@ describe('postcss-asterisk: position', function () {
 	it('4 asterisk values', function (done) {
 		test('a{ position: * * * *; }', 'a{ }', { }, done);
 	});
-
-	it('prefixed', function (done) {
-		test('a{ -s-position: 0 * *; }', 'a{ top: 0; }', { prefix: 's' }, done);
-	});
-
-	it('dummy', function (done) {
-		test('a{ text: bold center uppercase dimgrey 1.25em 1.5 .05em; }', 'a{ color: dimgrey; font-weight: bold; text-align: center; text-transform: uppercase; font-size: 1.25em; line-height: 1.5; letter-spacing: .05em; }', {}, done);
-	});
 });
 
-describe('postcss-asterisk: size', function () {
+describe('postcss-short: size', function () {
 	// 1 value
 	it('1 length value', function (done) {
 		test('a{ size: 100px; }', 'a{ width: 100px; height: 100px; }', { }, done);
@@ -285,7 +277,7 @@ describe('postcss-asterisk: size', function () {
 	});
 });
 
-describe('postcss-asterisk: text', function () {
+describe('postcss-short: text', function () {
 	it('1 color value', function (done) {
 		test('a{ text: red; }', 'a{ color: red; }', { }, done);
 	});
@@ -316,5 +308,24 @@ describe('postcss-asterisk: text', function () {
 
 	it('8 values', function (done) {
 		test('a{ text: bold italic red uppercase 16px 20px .05em optimizeLegibility; }', 'a{ color: red; font-style: italic; font-weight: bold; text-rendering: optimizeLegibility; text-transform: uppercase; font-size: 16px; line-height: 20px; letter-spacing: .05em; }', { }, done);
+	});
+});
+
+
+describe('postcss-short: options', function () {
+	it('prefixed', function (done) {
+		test('a{ -s-position: 0 * *; }', 'a{ top: 0; }', { prefix: 's' }, done);
+	});
+
+	it('selectively prefixed', function (done) {
+		test('a{ -s-position: 0 * *; }', 'a{ top: 0; }', { prefix: { position: 's' } }, done);
+	});
+
+	it('selectively (not) allowed', function (done) {
+		test('a{ -s-position: 0 * *; }', 'a{ -s-position: 0 * *; }', { allow: ['text'] }, done);
+	});
+
+	it('selectively denied', function (done) {
+		test('a{ -s-position: 0 * *; }', 'a{ -s-position: 0 * *; }', { deny: ['position'] }, done);
 	});
 });
