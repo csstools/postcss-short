@@ -2,7 +2,7 @@
 
 <img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
 
-[PostCSS Short] is a [PostCSS] plugin that allows that extends shorthand properties in CSS.
+[PostCSS Short] is a [PostCSS] plugin that extends shorthand properties in CSS.
 
 Shorthand properties allow you write more concise and often more readable style sheets, saving time and energy.
 
@@ -50,11 +50,6 @@ Shorthand properties allow you write more concise and often more readable style 
 	margin-left: 0;
 }
 ```
-
-- The asterisk (`*`) value prevents the overriding of a previous value.
-- The `position` property uses the same [1-to-4-value syntax] as `margin` and `padding`.
-- The `text` property shorthands text-related properties, including `color`, `font-style`, `font-variant`, `font-weight`, `font-stretch`, `text-decoration`, `text-align`, `text-rendering`, `text-transform`, `white-space`, `font-size`, `line-height`, `letter-spacing`, `word-spacing`, and `font-family`.
-- Shorthands are processed for `margin`, `padding`, `position`, `size`, `min-size`, `max-size`, and `text`.
 
 ## Usage
 
@@ -124,6 +119,16 @@ grunt.initConfig({
 	}
 }
 ```
+
+## Notes
+
+Shorthands are processed for `margin`, `padding`, `position`, `size`, `min-size`, `max-size`, and `text`.
+
+The asterisk (`*`) value prevents the overriding of a previous value.
+
+The `position` property uses the same [1-to-4-value syntax] as `margin` and `padding`.
+
+The `text` property shorthands text-related properties; `color`, `font-style`, `font-variant`, `font-weight`, `font-stretch`, `text-decoration`, `text-align`, `text-rendering`, `text-transform`, `white-space`, `font-size`, `line-height`, `letter-spacing`, `word-spacing`, and `font-family`.
 
 [1-to-4-value syntax]: https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases
 [ci]: https://travis-ci.org/jonathantneal/postcss-short
