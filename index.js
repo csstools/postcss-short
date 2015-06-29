@@ -1,169 +1,133 @@
-#!/usr/bin/env node
-
 var postcss = require('postcss');
-var space = postcss.list.space;
-var vars = require('./index.vars.js');
-var push = Array.prototype.push;
+var colors = require('css-color-names');
+var fontWeights = require('css-font-weight-names');
 
-module.exports = postcss.plugin('short', function (opts) {
+module.exports = postcss.plugin('postcss-asterisk', function (opts) {
 	opts = opts || {};
 
-	return function (css) {
-		// get formatted, spaced values
-		function getFormattedSpacedValues(value, map) {
-			var values = space(value);
-			var index;
+	var units = {
+		asterisk: /^\*$/,
+		anything: /^.+$/,
+		color: new RegExp('^(' + Object.keys(colors).concat('#[0-9a-f]+|currentColor|(hsl|rgb)a?\(.+\)|transparent|\\*').join('|') + ')$', 'i'),
+		fontStyle:   /^(inherit|italic|normal|oblique|\*)$/i,
+		fontStretch: /^(condensed|expanded|extra-condensed|extra-expanded|inherit|normal|semi-condensed|semi-expanded|ultra-condensed|ultra-expanded|\*)$/i,
+		fontWeight: new RegExp('^(' + Object.keys(fontWeights).concat('[1-9]00|bolder|inherit|lighter|\\*').join('|') + ')$', 'i'),
+		fontVariant: /^(all-petite-caps|all-small-caps|none|normal|oldstyle-nums|ordinal|petite-caps|slashed-zero|small-caps|stacked-fractions|titling-caps|unicase|\*)$/i,
+		length: /^(\*|0|[-+]?[0-9]*\.?[0-9]+(%|ch|cm|em|ex|in|mm|pc|pt|px|rem|vh|vmax|vmin|vw)|calc\(.+\)|inherit)$/i,
+		lengthFloat: /^(\*|[-+]?[0-9]*\.?[0-9]+(%|ch|cm|em|ex|in|mm|pc|pt|px|rem|vh|vmax|vmin|vw)?|calc\(.+\)|inherit)$/i,
+		position: /^(\*|absolute|inherit|fixed|relative|static|sticky)$/i,
+		textAlign: /^(center|end|inherit|justify|left|match-parent|right|start|start-end|\*)$/i,
+		textDecoration: /^(blink|inherit|initial|line-through|none|overline|underline|\*)$/i,
+		textRendering: /^(auto|geometricPrecision|inherit|optimizeLegibility|optimizeSpeed|\*)$/i,
+		textTransform: /^(capitalize|full-width|inherit|lowercase|none|uppercase|\*)$/i,
+		whiteSpace: /^(inherit|normal|nowrap|pre|pre-line|pre-wrap|\*)$/i
+	};
 
-			if (values.length) {
-				for (index in map) {
-					values[index] = index in values ? values[index] : values[map[index]];
-				}
-			}
-
-			return values.slice(0, map.length);
+	var transforms = {
+		'margin': {
+			properties: ['margin-top', 'margin-right', 'margin-bottom', 'margin-left'],
+			syntaxes:   [units.length, units.length, units.length, units.length],
+			fallbacks:  [0, 0, 0, 1],
+			requires:   units.asterisk
+		},
+		'max-size': {
+			properties: ['max-width', 'max-height'],
+			syntaxes:   [units.length, units.length],
+			fallbacks:  [0, 0]
+		},
+		'min-size': {
+			properties: ['min-width', 'min-height'],
+			syntaxes:   [units.length, units.length],
+			fallbacks:  [0, 0]
+		},
+		'padding': {
+			properties: ['padding-top', 'padding-right', 'padding-bottom', 'padding-left'],
+			syntaxes:   [units.length, units.length, units.length, units.length],
+			fallbacks:  [0, 0, 0, 1],
+			requires:   units.asterisk
+		},
+		'position': {
+			properties: ['position', 'top', 'right', 'bottom', 'left'],
+			syntaxes:   [units.position, units.length, units.length, units.length, units.length],
+			fallbacks:  [0, 1, 1, 1, 2],
+			ordered:    true,
+			requires:   units.length
+		},
+		'size': {
+			properties: ['width', 'height'],
+			syntaxes:   [units.length, units.length],
+			fallbacks:  [0, 0]
+		},
+		'text': {
+			properties: 'color font-style font-variant font-weight font-stretch text-decoration text-align text-rendering text-transform white-space font-size line-height letter-spacing word-spacing font-family'.split(' '),
+			syntaxes:   [units.color, units.fontStyle, units.fontVariant, units.fontWeight, units.fontStretch, units.textDecoration, units.textAlign, units.textRendering, units.textTransform, units.whiteSpace, units.length, units.lengthFloat, units.length, units.length, units.anything],
+			fallbacks:  []
 		}
+	};
 
-		// create alternate selectors
-		function createAlternateSelectors(filter, replacements) {
-			// for each rule
-			css.eachRule(function (rule) {
-				// create the future rule selector
-				var selectors = [];
+	Object.keys(transforms).forEach(function (key) {
+		if ((!opts.allowed || opts.allowed[key]) && (!opts.denied || !opts.denied[key])) {
+			var prefix = opts.prefix ? typeof opts.prefix === 'string' && opts.prefix || String(opts.prefix[key]) : false;
 
-				// for each selector
-				rule.selectors.forEach(function (selector) {
-					// if the selector matches the filter
-					if (filter.test(selector)) {
-						// push each matching, filtered selector into the future rule selector  
-						push.apply(selectors, replacements.map(function (replacement) {
-							return selector.replace(filter, replacement);
-						}));
+			if (prefix) {
+				transforms['-' + prefix.replace(/^-|-$/g, '') + '-' + key] = transforms[key];
+
+				delete transforms[key];
+			}
+		} else {
+				delete transforms[key];
+		}
+	});
+
+	return function (css) {
+		css.eachDecl(new RegExp('^(' + Object.keys(transforms).join('|') + ')$'), function (decl) {
+			var transform = transforms[decl.prop];
+			var syntaxes = transform.syntaxes.slice(0);
+			var process = [];
+			var passes = !transform.requires;
+
+			postcss.list.space(decl.value).forEach(function (value) {
+				if (!passes) {
+					passes = transform.requires.test(value);
+				}
+
+				syntaxes.some(function (syntax, index) {
+					if (syntax.test(value)) {
+						process[index] = value;
+
+						if (transform.ordered) {
+							syntaxes.slice(0, index + 1).forEach(function (syntax2, index2) {
+								delete syntaxes[index2];
+							});
+						} else {
+							delete syntaxes[index];
+						}
+
+						return true;
 					}
-					// otherwise
-					else {
-						// push the original selector
-						selectors.push(selector);
+				});
+			});
+
+			if (passes) {
+				transform.fallbacks.forEach(function (fallback, index) {
+					if (process[index] === undefined) {
+						process[index] = process[fallback];
 					}
 				});
 
-				// set the selector as the future selector
-				rule.selectors = selectors;
-			});
-		}
+				transform.properties.forEach(function (property, index) {
+					var value = process[index];
 
-		// create alternate declarations
-		function createAlternateDeclarations(filter, replacements, transformMap) {
-			// for each matching declaration
-			css.eachDecl(filter, function (decl) {
-				// for each formatted, spaced value 
-				getFormattedSpacedValues(decl.value, transformMap).forEach(function (value, index) {
-					// if * is not the value
-					if ('*' !== value) {
-						// create an alternate declaration
+					if (value && value !== '*') {
 						decl.cloneBefore({
-							prop: replacements[index],
+							prop: property,
 							value: value
 						});
 					}
 				});
 
-				// remove the declaration
 				decl.removeSelf();
-			});
-		}
-
-		// create expanded declarations
-		function createExpandedDeclarations(filter, propertyListListOriginal) {
-			// for each matching declaration
-			css.eachDecl(filter, function (decl) {
-				// create a clone of the property list list
-				var propertyListList = propertyListListOriginal.slice(0);
-
-				// prepare other variables
-				var propertyList;
-				var propertyListIndex = 0;
-				var propertyName;
-				var propertyNameIndex;
-				var match;
-
-				// for each space-separated value in the declaration value
-				space(decl.value).forEach(function (value) {
-					// for each property list
-					while ((propertyList = propertyListList[propertyListIndex])) {
-						propertyNameIndex = 0;
-
-						// for each property name
-						while ((propertyName = propertyList[propertyNameIndex])) {
-							// get the match for the property name
-							match = vars.match[propertyName];
-
-							// if the value passes the match
-							if (match.test(value)) {
-								// remove the property name from future matches
-								propertyList.splice(propertyNameIndex, 1);
-
-								// if * is not the value
-								if ('*' !== value) {
-									// create a new declaration
-									decl.cloneBefore({
-										prop: propertyName,
-										value: value
-									});
-								}
-
-								// advance to next space-separated value
-								return;
-							}
-
-							// advance to next property name
-							++propertyNameIndex;
-						}
-
-						// advance to next property list
-						++propertyListIndex;
-					}
-				});
-
-				// remove the declaration
-				decl.removeSelf();
-			});
-		}
-
-		// create an expanded value
-		function createExpandedValue(filter) {
-			var object = vars.object[filter];
-
-			css.eachDecl(filter, function (decl) {
-				var value = decl.value.replace(/-/g, '').toLowerCase();
-
-				if (value in object) {
-					decl.value = object[value];
-				}
-			});
-		}
-
-		// create a prefixed string
-		function prefix(string) {
-			return opts.prefix ? '-' + opts.prefix + '-' + string : string;
-		}
-
-		// create alternate selectors
-		createAlternateSelectors(new RegExp('\\b::' + prefix('around') + '\\b'), ['::before', '::after']);
-		createAlternateSelectors(new RegExp('\\b:' + prefix('over') + '\\b'), [':focus', ':hover']);
-
-		// create alternate declarations
-		createAlternateDeclarations(prefix('margin'), ['margin-top', 'margin-right', 'margin-bottom', 'margin-left'], [0, 0, 0, 1]);
-		createAlternateDeclarations(prefix('max-size'), ['max-width', 'max-height'], [0, 0]);
-		createAlternateDeclarations(prefix('min-size'), ['min-width', 'min-height'], [0, 0]);
-		createAlternateDeclarations(prefix('padding'), ['padding-top', 'padding-right', 'padding-bottom', 'padding-left'], [0, 0, 0, 1]);
-		createAlternateDeclarations(prefix('position'), ['position', 'top', 'right', 'bottom', 'left'], [0, 1, 1, 1, 2]);
-		createAlternateDeclarations(prefix('size'), ['width', 'height'], [0, 0]);
-
-		// create expanded declarations
-		createExpandedDeclarations(prefix('text'), [['color', 'font-style', 'font-variant', 'font-weight', 'font-stretch', 'text-decoration', 'text-align', 'text-rendering', 'text-transform', 'white-space'], ['font-size'], ['line-height'], ['letter-spacing'], ['word-spacing'], ['font-family']]);
-
-		// create expanded values
-		createExpandedValue('color');
-		createExpandedValue('font-weight');
+			}
+		});
 	};
 });
