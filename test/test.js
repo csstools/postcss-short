@@ -311,6 +311,27 @@ describe('postcss-short: text', function () {
 	});
 });
 
+describe('postcss-short: text-spacing', function () {
+	it('1 value', function (done) {
+		test('a{ text-spacing: 1em; }', 'a{ letter-spacing: 1em; }', { }, done);
+	});
+
+	it('1 asterisk', function (done) {
+		test('a{ text-spacing: *; }', 'a{ }', { }, done);
+	});
+
+	it('1 value, 1 asterisk', function (done) {
+		test('a{ text-spacing: 1em *; }', 'a{ letter-spacing: 1em; }', { }, done);
+	});
+
+	it('1 asterisk, 1 value', function (done) {
+		test('a{ text-spacing: * 2em; }', 'a{ word-spacing: 2em; }', { }, done);
+	});
+
+	it('1 values', function (done) {
+		test('a{ text-spacing: 1em 2em; }', 'a{ letter-spacing: 1em; word-spacing: 2em; }', { }, done);
+	});
+});
 
 describe('postcss-short: options', function () {
 	it('prefixed', function (done) {
