@@ -1,3 +1,10 @@
+## 0.3.0 (2015-07-03)
+
+- Added: `.process` method
+- Added: `text-spacing` shorthand
+- Added: Tests
+- Added: Documentation
+
 ## 0.2.2 (2015-07-03)
 
 - Added: Code commenting
