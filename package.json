@@ -10,8 +10,6 @@
 		"url":  "https://github.com/jonathantneal/postcss-short.git"
 	},
 	"dependencies": {
-		"css-color-names": "0.0.1",
-		"css-font-weight-names": "^0.2.1",
 		"postcss": "^4.1.9"
 	},
 	"devDependencies": {
