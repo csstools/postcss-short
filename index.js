@@ -92,6 +92,10 @@ var transforms = {
 	'text': {
 		properties: ['color', 'font-style', 'font-variant', 'font-weight', 'font-stretch', 'text-decoration', 'text-align', 'text-rendering', 'text-transform', 'white-space', 'font-size', 'line-height', 'letter-spacing', 'word-spacing', 'font-family'],
 		fallbacks: []
+	},
+	'text-spacing': {
+		properties: ['letter-spacing', 'word-spacing'],
+		fallbacks: []
 	}
 };
 
