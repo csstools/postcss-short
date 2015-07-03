@@ -122,13 +122,21 @@ grunt.initConfig({
 
 ## Notes
 
-Shorthands are processed for `margin`, `padding`, `position`, `size`, `min-size`, `max-size`, and `text`.
+Shorthands are extended for `margin`, `padding`, `position`, `size`, `min-size`, `max-size`, `text`, and `text-spacing`.
 
-The asterisk (`*`) value prevents the overriding of a previous value.
+The `position` property shorthands itself, `top`, `right`, `bottom`, and `left`. It uses similar [1-to-4-value syntax] as `margin` and `padding`.
 
-The `position` property uses the same [1-to-4-value syntax] as `margin` and `padding`.
+The `size` property shorthands `width` and `height`.
 
-The `text` property shorthands text-related properties; `color`, `font-style`, `font-variant`, `font-weight`, `font-stretch`, `text-decoration`, `text-align`, `text-rendering`, `text-transform`, `white-space`, `font-size`, `line-height`, `letter-spacing`, `word-spacing`, and `font-family`.
+The `min-size` property shorthands `min-width` and `min-height`.
+
+The `max-size` property shorthands `max-width` and `max-height`.
+
+The `text` property shorthands many text-related properties; `color`, `font-style`, `font-variant`, `font-weight`, `font-stretch`, `text-decoration`, `text-align`, `text-rendering`, `text-transform`, `white-space`, `font-size`, `line-height`, `letter-spacing`, `word-spacing`, and `font-family`.
+
+The `text-spacing` property shorthands `letter-spacing` and `word-spacing`.
+
+The asterisk (`*`) value prevents a value within a shorthand from overriding its corresponding longhand value.
 
 [1-to-4-value syntax]: https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases
 [ci]: https://travis-ci.org/jonathantneal/postcss-short
