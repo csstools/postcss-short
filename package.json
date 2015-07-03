@@ -1,6 +1,6 @@
 {
 	"name": "postcss-short",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Extend shorthand properties in CSS",
 	"keywords": ["postcss", "css", "postcss-plugin", "shorthands", "asterisks",  "margin", "padding", "spacing", "position", "size", "sizing", "min-size", "max-size", "text", "color", "font-style", "font-variant", "font-weight", "font-stretch", "text-decoration", "text-align", "text-rendering", "text-transform", "white-space", "font-size", "line-height", "letter-spacing", "word-spacing", "font-family"],
 	"author": "Jonathan Neal <jonathantneal@hotmail.com>",
