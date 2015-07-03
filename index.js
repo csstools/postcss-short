@@ -16,6 +16,7 @@ function filterSpacing(properties, values) {
 
 var postcss = require('postcss');
 
+// set css data types
 var type = {
 	color: /^(\*|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|currentColor|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|inherit|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|transparent|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|#[0-9a-f]+|(hsl|rgb)a?\(.+\))$/i,
 	lengthFont: /^(\*|(calc|var)\(.+\)|inherit|initial|large|larger|medium|small|smaller|unset|x-large|x-small|xx-large|xx-small|0|[-+]?[0-9]*\.?[0-9]+(%|ch|cm|em|ex|in|mm|pc|pt|px|rem|vh|vmax|vmin|vw))$/,
@@ -26,6 +27,7 @@ var type = {
 	lengthSpacing: /^(\*|(calc|var)\(.+\)|inherit|initial|unset|0|[-+]?[0-9]*\.?[0-9]+(%|ch|cm|em|ex|in|mm|pc|pt|px|rem|vh|vmax|vmin|vw))$/i
 };
 
+// set css syntaxes
 var syntax = {
 	'color': type.color,
 	'bottom': type.lengthPosition,
@@ -58,6 +60,7 @@ var syntax = {
 	'word-spacing': type.lengthFontSpacing
 };
 
+// set transforms
 var transforms = {
 	'margin': {
 		properties: ['margin-top', 'margin-right', 'margin-bottom', 'margin-left'],
@@ -92,9 +95,11 @@ var transforms = {
 	}
 };
 
+// create plugin
 module.exports = postcss.plugin('postcss-short', function (opts) {
 	opts = opts || {};
 
+	// set which transforms will run
 	var transformList = {};
 
 	Object.keys(transforms).forEach(function (transformName) {
@@ -107,14 +112,17 @@ module.exports = postcss.plugin('postcss-short', function (opts) {
 		}
 	});
 
+	// run plugin
 	return function (css) {
+		// for each declaration with a transform
 		css.eachDecl(new RegExp('^(' + Object.keys(transformList).join('|') + ')$'), function (decl) {
 			var transform = transformList[decl.prop];
 			var properties = transform.properties.slice(0);
 			var values = [];
 
+			// for each space-separated value
 			postcss.list.space(decl.value).forEach(function (value) {
-				// assign each matching value
+				// assign a matching value
 				properties.some(function (property, index) {
 					if (syntax[property].test(value)) {
 						values[index] = value;
@@ -147,8 +155,6 @@ module.exports = postcss.plugin('postcss-short', function (opts) {
 
 			// push each property before the current declaration
 			values.forEach(function (value, index) {
-				var propertyName = properties[index];
-
 				if (value && value !== '*') {
 					decl.cloneBefore({
 						prop: properties[index],
