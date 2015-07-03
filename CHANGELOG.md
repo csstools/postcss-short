@@ -1,6 +1,12 @@
+## 0.2.2 (2015-07-03)
+
+- Added: Code commenting
+- Changed: Tests
+
 ## 0.2.1 (2015-07-03)
 
 - Added: Tests
+- Added: Support for CSS var values
 - Changed: Code refactoring
 - Removed: Unused CSS naming libraries
 
