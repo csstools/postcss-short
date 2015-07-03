@@ -168,3 +168,9 @@ module.exports = postcss.plugin('postcss-short', function (opts) {
 		});
 	};
 });
+
+module.exports.process = function (css, opts) {
+	var processed = postcss([module.exports(opts)]).process(css, opts);
+
+	return opts && opts.map && !opts.map.inline ? processed : processed.css;
+};
