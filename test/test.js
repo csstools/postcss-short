@@ -321,11 +321,31 @@ describe('postcss-short: options', function () {
 		test('a{ -s-position: 0 * *; }', 'a{ top: 0; }', { prefix: { position: 's' } }, done);
 	});
 
+	it('selectively (not) prefixed', function (done) {
+		test('a{ -s-position: 0 * *; }', 'a{ -s-position: 0 * *; }', { prefix: { top: 's' } }, done);
+	});
+
+	it('totally allowed', function (done) {
+		test('a{ position: 0 * *; }', 'a{ top: 0; }', { allow: true }, done);
+	});
+
+	it('totally denied', function (done) {
+		test('a{ position: 0 * *; }', 'a{ position: 0 * *; }', { deny: true }, done);
+	});
+
+	it('selectively allowed', function (done) {
+		test('a{ position: 0 * *; }', 'a{ top: 0; }', { allow: ['position'] }, done);
+	});
+
 	it('selectively (not) allowed', function (done) {
-		test('a{ -s-position: 0 * *; }', 'a{ -s-position: 0 * *; }', { allow: ['text'] }, done);
+		test('a{ position: 0 * *; }', 'a{ position: 0 * *; }', { allow: ['text'] }, done);
 	});
 
 	it('selectively denied', function (done) {
-		test('a{ -s-position: 0 * *; }', 'a{ -s-position: 0 * *; }', { deny: ['position'] }, done);
+		test('a{ position: 0 * *; }', 'a{ position: 0 * *; }', { deny: ['position'] }, done);
+	});
+
+	it('selectively (not) denied', function (done) {
+		test('a{ position: 0 * *; }', 'a{ top: 0; }', { deny: ['text'] }, done);
 	});
 });
