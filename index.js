@@ -6,7 +6,7 @@ function reduce1to4syntax(values) {
 	return values;
 }
 
-function filterSpacing(properties, values) {
+function filter1to4syntax(properties, values) {
 	if (values.length === 4 && values.every(function (value) { return value !== '*'; })) {
 		properties.splice(0, 4, properties[0].replace(/-.+/, ''));
 
@@ -65,7 +65,7 @@ var transforms = {
 	'margin': {
 		properties: ['margin-top', 'margin-right', 'margin-bottom', 'margin-left'],
 		fallbacks:  [0, 0, 0, 1],
-		filter: filterSpacing
+		filter: filter1to4syntax
 	},
 	'max-size': {
 		properties: ['max-width', 'max-height'],
@@ -78,7 +78,7 @@ var transforms = {
 	'padding': {
 		properties: ['padding-top', 'padding-right', 'padding-bottom', 'padding-left'],
 		fallbacks:  [0, 0, 0, 1],
-		filter: filterSpacing
+		filter: filter1to4syntax
 	},
 	'position': {
 		properties: ['position', 'top', 'right', 'bottom', 'left'],
