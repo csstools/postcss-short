@@ -46,8 +46,8 @@ Shorthand properties allow you write more concise and often more readable style 
 }
 
 .section.inset {
-	margin-right: 0;
-	margin-left: 0;
+	margin-right: auto;
+	margin-left: auto;
 }
 ```
 
