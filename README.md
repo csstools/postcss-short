@@ -65,7 +65,7 @@ npm install postcss-short --save-dev
 ### Node
 
 ```js
-postcss([ require('postcss-short')(/* options */) ])
+require('postcss-short').process(CSS_STRING, {/* options */});
 ```
 
 ### Grunt
