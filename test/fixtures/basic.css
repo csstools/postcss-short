@@ -1,0 +1,13 @@
+.banner {
+	position: fixed 0 0 *;
+	size: 100% 48px;
+}
+
+.section {
+	margin: 40px;
+	text: bold center uppercase dimgrey 1.25em 1.5 .05em;
+}
+
+.section.inset {
+	margin: * auto;
+}

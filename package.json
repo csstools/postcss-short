@@ -1,24 +1,69 @@
 {
-	"name": "postcss-short",
-	"version": "0.3.0",
-	"description": "Extend shorthand properties in CSS",
-	"keywords": ["postcss", "css", "postcss-plugin", "shorthands", "asterisks",  "margin", "padding", "spacing", "position", "size", "sizing", "min-size", "max-size", "text", "color", "font-style", "font-variant", "font-weight", "font-stretch", "text-decoration", "text-align", "text-rendering", "text-transform", "white-space", "font-size", "line-height", "letter-spacing", "word-spacing", "font-family"],
-	"author": "Jonathan Neal <jonathantneal@hotmail.com>",
-	"license": "CC0-1.0",
-	"repository": {
-		"type": "git",
-		"url":  "https://github.com/jonathantneal/postcss-short.git"
-	},
-	"dependencies": {
-		"postcss": "^4.1.9"
-	},
-	"devDependencies": {
-		"gulp-eslint": "^0.12.0",
-		"gulp-mocha":  "^2.0.1",
-		"chai":        "^2.3.0",
-		"gulp":        "^3.8.11"
-	},
-	"scripts": {
-		"test": "gulp"
-	}
+  "name": "postcss-short",
+  "version": "1.0.0",
+  "description": "short",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "shorthands",
+    "asterisks",
+    "margins",
+    "paddings",
+    "spacings",
+    "positions",
+    "sizes",
+    "sizings",
+    "min-sizes",
+    "max-sizes",
+    "texts",
+    "colors",
+    "font-styles",
+    "font-variants",
+    "font-weights",
+    "font-stretchs",
+    "text-decorations",
+    "text-aligns",
+    "text-renderings",
+    "text-transforms",
+    "white-spaces",
+    "font-sizes",
+    "line-heights",
+    "letter-spacings",
+    "word-spacings",
+    "font-families",
+    "font-family"
+  ],
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "CC0-1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonathantneal/postcss-short.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonathantneal/postcss-short/issues"
+  },
+  "homepage": "https://github.com/jonathantneal/postcss-short",
+  "dependencies": {
+    "object-assign": "^4.0.1",
+    "postcss": "^5.0.4",
+    "postcss-short-font-size": "^1.0.0",
+    "postcss-short-position": "^1.0.0",
+    "postcss-short-size": "^1.0.0",
+    "postcss-short-spacing": "^1.0.0",
+    "postcss-short-text": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-mocha": "^2.1.3"
+  },
+  "scripts": {
+    "test": "gulp"
+  },
+  "engines": {
+    "iojs": ">=2.0.0",
+    "node": ">=0.12.0"
+  }
 }

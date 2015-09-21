@@ -1,3 +1,8 @@
+## 1.0.0 (2015-09-21)
+
+- Changed: Refactored as plugin pack
+- Changed: Switched to PostCSS 5 API
+
 ## 0.3.0 (2015-07-03)
 
 - Added: `.process` method
