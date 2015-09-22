@@ -1,3 +1,7 @@
+## 1.0.1 (2015-09-22)
+
+- Updated: Documentation
+
 ## 1.0.0 (2015-09-21)
 
 - Changed: Refactored as plugin pack
