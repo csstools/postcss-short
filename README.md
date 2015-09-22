@@ -2,7 +2,7 @@
 
 <img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
 
-[Short] is a [PostCSS] plugin that lets you use shorthand properties in CSS.
+[Short] is a [PostCSS] plugin that lets you use advanced shorthand properties in CSS.
 
 Shorthand properties allow you write more concise and often more readable style sheets, saving time and energy.
 
