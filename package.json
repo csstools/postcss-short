@@ -1,6 +1,6 @@
 {
   "name": "postcss-short",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "short",
   "keywords": [
     "postcss",
@@ -51,7 +51,7 @@
     "postcss-short-position": "^1.0.0",
     "postcss-short-size": "^1.0.0",
     "postcss-short-spacing": "^1.0.0",
-    "postcss-short-text": "^1.0.0"
+    "postcss-short-text": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^3.2.0",
