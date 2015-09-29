@@ -1,3 +1,10 @@
+## 1.2.0 (2015-09-20)
+
+Added: PostCSS Short Color 1.0.0
+Updated: PostCSS Short Font-Size 1.0.1 (patch)
+Updated: PostCSS 5.0.8 (patch)
+Updated: Documentation
+
 ## 1.1.1 (2015-09-22)
 
 Updated: Documentation

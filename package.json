@@ -1,13 +1,15 @@
 {
   "name": "postcss-short",
-  "version": "1.1.0",
-  "description": "short",
+  "version": "1.2.0",
+  "description": "Short creates and extends shorthand properties in CSS",
   "keywords": [
     "postcss",
     "css",
     "postcss-plugin",
     "shorthands",
     "asterisks",
+    "colors",
+    "backgrounds",
     "margins",
     "paddings",
     "spacings",
@@ -46,15 +48,16 @@
   "homepage": "https://github.com/jonathantneal/postcss-short",
   "dependencies": {
     "object-assign": "^4.0.1",
-    "postcss": "^5.0.4",
-    "postcss-short-font-size": "^1.0.0",
+    "postcss": "^5.0.8",
+    "postcss-short-color": "^1.0.0",
+    "postcss-short-font-size": "^1.0.1",
     "postcss-short-position": "^1.0.0",
     "postcss-short-size": "^1.0.0",
     "postcss-short-spacing": "^1.0.0",
     "postcss-short-text": "^1.1.0"
   },
   "devDependencies": {
-    "chai": "^3.2.0",
+    "chai": "^3.3.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
     "gulp-mocha": "^2.1.3"

@@ -3,6 +3,11 @@ var postcss = require('postcss');
 
 var processors = [
 	{
+		plugin: require('postcss-short-color'),
+		namespace: 'color',
+		defaults: {}
+	},
+	{
 		plugin: require('postcss-short-font-size'),
 		namespace: 'font-size',
 		defaults: {}

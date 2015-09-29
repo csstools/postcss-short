@@ -2,9 +2,41 @@
 
 <img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
 
-[Short] is a [PostCSS] plugin that lets you use advanced shorthand properties in CSS.
+[Short] is a [PostCSS] plugin that creates and extends shorthand properties in CSS.
 
-Shorthand properties allow you write more concise and often more readable style sheets, saving time and energy.
+I hope each of these shorthand properties are clear and concise to any first-time viewer, improving the readability of stylesheets and saving developers time along the way.
+
+---
+
+Set `width` and `height` together using the `size` property. Avoid clobbering the previous `margin` by using an asterisk, which indicates that an edge is skipped.
+
+```css
+/* before */
+
+.icon {
+    margin: 16px;
+    size: 48px;
+}
+
+.icon.primary {
+    margin: * auto;
+}
+
+/* after */
+
+.icon {
+    margin: 16px;
+    width: 48px;
+    height: 48px;
+}
+
+.icon.primary {
+    margin-right: auto;
+    margin-left: auto;
+}
+```
+
+Set `top`, `right`, `bottom`, and `left` in the `position` property using the [1-to-4 syntax]. Just like before, asterisks indicate that an edge is skipped. Set `width` and `height` together using `size`.
 
 ```css
 /* before */
@@ -12,15 +44,6 @@ Shorthand properties allow you write more concise and often more readable style 
 .banner {
     position: fixed 0 0 *;
     size: 100% 48px;
-}
-
-.section {
-    margin: 40px;
-    text: bold center uppercase dimgrey 1.25em 1.5 .05em;
-}
-
-.section.inset {
-    margin: * auto;
 }
 
 /* after */
@@ -33,9 +56,40 @@ Shorthand properties allow you write more concise and often more readable style 
     width: 100%;
     height: 48px;
 }
+```
+
+Set `color` and `background-color` together, and then set `font-size` and `line-height` together.
+
+```css
+/* before */
+
+.canvas {
+    color: #abccfc #212231;
+    font-size: 1.25em 2;
+}
+
+/* after */
+
+.canvas {
+    color: #abccfc;
+    background-color: #212231;
+    font-size: 1.25em;
+    line-height: 2;
+}
+```
+
+Keep text properties together by using the `text` property.
+
+```css
+/* before */
 
 .section {
-    margin: 40px;
+    text: dimgrey bold center uppercase 1.25em 1.5 .05em;
+}
+
+/* after */
+
+.section {
     color: dimgrey;
     font-weight: bold;
     text-align: center;
@@ -43,11 +97,6 @@ Shorthand properties allow you write more concise and often more readable style 
     font-size: 1.25em;
     line-height: 1.5;
     letter-spacing: .05em;
-}
-
-.section.inset {
-    margin-right: auto;
-    margin-left: auto;
 }
 ```
 
@@ -138,6 +187,7 @@ grunt.initConfig({
 
 [Short] is powered by the following plugins (in order):
 
+- [Shorthand Color](https://github.com/jonathantneal/postcss-short-color)
 - [Shorthand Font-Size](https://github.com/jonathantneal/postcss-short-font-size)
 - [Shorthand Position](https://github.com/jonathantneal/postcss-short-position)
 - [Shorthand Size](https://github.com/jonathantneal/postcss-short-size)
@@ -160,6 +210,7 @@ require('postcss-short')({
 })
 ```
 
+[1-to-4 syntax]: https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases
 [ci]: https://travis-ci.org/jonathantneal/postcss-short
 [ci-img]: https://travis-ci.org/jonathantneal/postcss-short.svg
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
