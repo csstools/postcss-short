@@ -1,4 +1,9 @@
-## 1.2.0 (2015-09-20)
+## 1.3.0 (2015-09-30)
+
+Added: PostCSS Short Border 1.0.0
+Updated: Improved how options are assigned
+
+## 1.2.0 (2015-09-30)
 
 Added: PostCSS Short Color 1.0.0
 Updated: PostCSS Short Font-Size 1.0.1 (patch)

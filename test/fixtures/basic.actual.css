@@ -1,4 +1,6 @@
 .banner {
+	border-width: 1px 2px;
+	border-color: #343434;
 	color: #abccfc;
 	background-color: #212231;
 	top: 0;

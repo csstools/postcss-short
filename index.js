@@ -3,6 +3,11 @@ var postcss = require('postcss');
 
 var processors = [
 	{
+		plugin: require('postcss-short-border'),
+		namespace: 'border',
+		defaults: {}
+	},
+	{
 		plugin: require('postcss-short-color'),
 		namespace: 'color',
 		defaults: {}
@@ -35,7 +40,7 @@ var processors = [
 ];
 
 module.exports = postcss.plugin('postcss-short', function (opts) {
-	opts = opts || {};
+	opts = assign({}, opts);
 
 	var instance = postcss();
 
