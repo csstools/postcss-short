@@ -1,3 +1,7 @@
+## 1.3.1 (2015-09-30)
+
+Updated: Documentation
+
 ## 1.3.0 (2015-09-30)
 
 Added: PostCSS Short Border 1.0.0
