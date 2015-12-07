@@ -1,6 +1,7 @@
 .banner {
 	border: 1px 2px #343434;
 	color: #abccfc #212231;
+	font-weight: light;
 	position: fixed 0 0 *;
 	size: 100% 48px;
 }
@@ -12,4 +13,8 @@
 
 .section.inset {
 	margin: * auto;
+}
+
+.menu-item[-active] {
+	background: #f3f3f3;
 }

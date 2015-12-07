@@ -1,16 +1,18 @@
-# Short [![Build Status][ci-img]][ci]
+# Short
 
 <img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
 
-[Short] is a [PostCSS] plugin that creates and extends shorthand properties in CSS.
+[![NPM Version][npm-img]][npm] [![Build Status][ci-img]][ci]
 
-I hope each of these shorthand properties are clear and concise to any first-time viewer, improving the readability of stylesheets and saving developers time along the way.
+[Short] lets you write styles more logically by extending shorthand properties in CSS.
+
+Short has now been featured in **[Smashing Magazine]**! I hope all of these shorthands are useful and clear to first-time lookers. I hope they improve the readability of your stylesheets and save you development time along the way. Thank you so much for your support.
 
 ## Features
 
 ### Size
 
-Set `width` and `height` together using the `size` property.
+Write `width` and `height` together with the `size` property.
 
 ```css
 /* before */
@@ -29,7 +31,7 @@ Set `width` and `height` together using the `size` property.
 
 ### Margin and Padding
 
-Avoid clobbering the previous `margin` using an asterisk, which indicates that an edge is skipped.
+Avoid clobbering previous `margin` by using an asterisk, which indicates that an edge is skipped.
 
 ```css
 /* before */
@@ -48,7 +50,7 @@ Avoid clobbering the previous `margin` using an asterisk, which indicates that a
 
 ### Position
 
-Set `top`, `right`, `bottom`, and `left` in the `position` property with the [clockwise syntax]. Just like before, an asterisk indicates that an edge is skipped.
+Write `top`, `right`, `bottom`, and `left` in the `position` property using the [clockwise syntax]. Just like before, an asterisk indicates that an edge is skipped.
 
 ```css
 /* before */
@@ -69,7 +71,7 @@ Set `top`, `right`, `bottom`, and `left` in the `position` property with the [cl
 
 ### Color
 
-Set `color` and `background-color` together.
+Write `color` and `background-color` together.
 
 ```css
 /* before */
@@ -88,7 +90,7 @@ Set `color` and `background-color` together.
 
 ### Border
 
-Set multiple edges on `border` properties with the same [clockwise syntax].
+Define multiple edges on `border` properties using the [clockwise syntax].
 
 ```css
 /* before */
@@ -107,7 +109,7 @@ Set multiple edges on `border` properties with the same [clockwise syntax].
 
 ### Font-Size
 
-Set `font-size` and `line-height` together.
+Write `font-size` and `line-height` together.
 
 ```css
 /* before */
@@ -124,9 +126,27 @@ Set `font-size` and `line-height` together.
 }
 ```
 
+### Font-Weight
+
+Write `font-weight` using common names.
+
+```css
+/* before */
+
+p {
+    font-weight: light;
+}
+
+/* after */
+
+p {
+    font-weight: 300;
+}
+```
+
 ### Text
 
-Or, keep all text properties together with the `text` property.
+Keep all text properties together with the `text` property.
 
 ```css
 /* before */
@@ -139,12 +159,30 @@ Or, keep all text properties together with the `text` property.
 
 .section {
     color: dimgrey;
-    font-weight: bold;
+    font-weight: 700;
     text-align: center;
     text-transform: uppercase;
     font-size: 1.25em;
     line-height: 1.5;
     letter-spacing: .05em;
+}
+```
+
+### Data Attributes
+
+Set `data-` attributes with a shorter attribute selector.
+
+```css
+/* before */
+
+.menu-item[-active] {
+    background: #f3f3f3;
+}
+
+/* after */
+
+.menu-item[data-active] {
+    background: #f3f3f3;
 }
 ```
 
@@ -159,6 +197,8 @@ Or, keep all text properties together with the `text` property.
 - [Shorthand Size](https://github.com/jonathantneal/postcss-short-size)
 - [Shorthand Spacing](https://github.com/jonathantneal/postcss-short-spacing)
 - [Shorthand Text](https://github.com/jonathantneal/postcss-short-text)
+- [Shorthand Data](https://github.com/jonathantneal/postcss-short-data)
+- [Font Weights](https://github.com/jonathantneal/postcss-font-weights)
 
 Some of these plugins have more features than are described here.
 
@@ -261,6 +301,11 @@ require('postcss-short')({
 })
 ```
 
+[ci]:      https://travis-ci.org/jonathantneal/postcss-short
+[ci-img]:  https://img.shields.io/travis/jonathantneal/postcss-short.svg
+[npm]:     https://www.npmjs.com/package/postcss-short
+[npm-img]: https://img.shields.io/npm/v/postcss-short.svg
+
 [clockwise syntax]: https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases
 [ci]: https://travis-ci.org/jonathantneal/postcss-short
 [ci-img]: https://travis-ci.org/jonathantneal/postcss-short.svg
@@ -268,3 +313,4 @@ require('postcss-short')({
 [Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
 [PostCSS]: https://github.com/postcss/postcss
 [Short]: https://github.com/jonathantneal/postcss-short
+[Smashing Magazine]: http://www.smashingmagazine.com/2015/12/introduction-to-postcss/#extendedshorthandpropertieswithpostcss-short

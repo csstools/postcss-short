@@ -1,3 +1,9 @@
+## 1.4.0 (2015-12-08)
+
+Added: Use shorthand data attributes `[-name]`
+Added: Use common `font-weight` names
+Updated: Documentation, and Tests
+
 ## 1.3.1 (2015-09-30)
 
 Updated: Documentation

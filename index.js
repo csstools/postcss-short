@@ -3,39 +3,49 @@ var postcss = require('postcss');
 
 var processors = [
 	{
-		plugin: require('postcss-short-border'),
+		plugin:    require('postcss-short-border'),
 		namespace: 'border',
-		defaults: {}
+		defaults:  {}
 	},
 	{
-		plugin: require('postcss-short-color'),
+		plugin:    require('postcss-short-color'),
 		namespace: 'color',
-		defaults: {}
+		defaults:  {}
 	},
 	{
-		plugin: require('postcss-short-font-size'),
+		plugin:    require('postcss-short-font-size'),
 		namespace: 'font-size',
-		defaults: {}
+		defaults:  {}
 	},
 	{
-		plugin: require('postcss-short-position'),
+		plugin:    require('postcss-short-position'),
 		namespace: 'position',
-		defaults: {}
+		defaults:  {}
 	},
 	{
-		plugin: require('postcss-short-size'),
+		plugin:    require('postcss-short-size'),
 		namespace: 'size',
-		defaults: {}
+		defaults:  {}
 	},
 	{
-		plugin: require('postcss-short-spacing'),
+		plugin:    require('postcss-short-spacing'),
 		namespace: 'spacing',
-		defaults: {}
+		defaults:  {}
 	},
 	{
-		plugin: require('postcss-short-text'),
+		plugin:    require('postcss-short-text'),
 		namespace: 'text',
-		defaults: {}
+		defaults:  {}
+	},
+	{
+		plugin:    require('postcss-font-weights'),
+		namespace: 'font-weight',
+		defaults:  {}
+	},
+	{
+		plugin:    require('postcss-short-data'),
+		namespace: 'data',
+		defaults:  {}
 	}
 ];
 

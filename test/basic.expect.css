@@ -3,6 +3,7 @@
 	border-color: #343434;
 	color: #abccfc;
 	background-color: #212231;
+	font-weight: 300;
 	top: 0;
 	right: 0;
 	left: 0;
@@ -13,7 +14,7 @@
 
 .section {
 	margin: 40px;
-	font-weight: bold;
+	font-weight: 700;
 	text-align: center;
 	text-transform: uppercase;
 	color: dimgrey;
@@ -25,4 +26,8 @@
 .section.inset {
 	margin-right: auto;
 	margin-left: auto;
+}
+
+.menu-item[data-active] {
+	background: #f3f3f3;
 }
