@@ -48,7 +48,7 @@ Avoid clobbering the previous `margin` using an asterisk, which indicates that a
 
 ### Position
 
-Set `top`, `right`, `bottom`, and `left` in the `position` property using the [1-to-4 syntax]. Just like before, an asterisk indicates that an edge is skipped. 
+Set `top`, `right`, `bottom`, and `left` in the `position` property with the [clockwise syntax]. Just like before, an asterisk indicates that an edge is skipped.
 
 ```css
 /* before */
@@ -88,7 +88,7 @@ Set `color` and `background-color` together.
 
 ### Border
 
-Set multiple edges on `border` properties using the same [1-to-4 syntax].
+Set multiple edges on `border` properties with the same [clockwise syntax].
 
 ```css
 /* before */
@@ -126,7 +126,7 @@ Set `font-size` and `line-height` together.
 
 ### Text
 
-Or, keep all text properties together using the `text` property.
+Or, keep all text properties together with the `text` property.
 
 ```css
 /* before */
@@ -261,7 +261,7 @@ require('postcss-short')({
 })
 ```
 
-[1-to-4 syntax]: https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases
+[clockwise syntax]: https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases
 [ci]: https://travis-ci.org/jonathantneal/postcss-short
 [ci-img]: https://travis-ci.org/jonathantneal/postcss-short.svg
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
