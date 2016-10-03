@@ -1,6 +1,8 @@
 .banner {
 	border: 1px 2px #343434;
+	border-bottom-radius: 10px;
 	color: #abccfc #212231;
+	font-size: 12px/1;
 	font-weight: light;
 	position: fixed 0 0 *;
 	size: 100% 48px;

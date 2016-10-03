@@ -2,6 +2,7 @@ var assign  = require('object-assign');
 var postcss = require('postcss');
 
 var postCSSShortBorder = require('postcss-short-border');
+var postCSSShortBorderRadius = require('postcss-short-border-radius');
 var postCSSShortColor = require('postcss-short-color');
 var postCSSShortFontSize = require('postcss-short-font-size');
 var postCSSShortPosition = require('postcss-short-position');
@@ -15,6 +16,11 @@ var processors = [
 	{
 		plugin:    postCSSShortBorder,
 		namespace: 'border',
+		defaults:  {}
+	},
+	{
+		plugin:    postCSSShortBorderRadius,
+		namespace: 'border-radius',
 		defaults:  {}
 	},
 	{

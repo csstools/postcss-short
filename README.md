@@ -107,6 +107,25 @@ Define multiple edges on `border` properties using the [clockwise syntax].
 }
 ```
 
+### Border
+
+Define more `border-radius` properties using the [clockwise syntax].
+
+```css
+/* before */
+
+.container {
+	border-bottom-radius: 10px;
+}
+
+/* after */
+
+.container {
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+```
+
 ### Font-Size
 
 Write `font-size` and `line-height` together.
@@ -191,6 +210,7 @@ Set `data-` attributes with a shorter attribute selector.
 [Short] is powered by the following plugins:
 
 - [Shorthand Border](https://github.com/jonathantneal/postcss-short-border)
+- [Shorthand Border Radius](https://github.com/jonathantneal/postcss-short-border-radius)
 - [Shorthand Color](https://github.com/jonathantneal/postcss-short-color)
 - [Shorthand Font-Size](https://github.com/jonathantneal/postcss-short-font-size)
 - [Shorthand Position](https://github.com/jonathantneal/postcss-short-position)
