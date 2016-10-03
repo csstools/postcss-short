@@ -107,7 +107,7 @@ Define multiple edges on `border` properties using the [clockwise syntax].
 }
 ```
 
-### Border
+### Border Radius
 
 Define more `border-radius` properties using the [clockwise syntax].
 
