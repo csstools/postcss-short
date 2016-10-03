@@ -38,33 +38,33 @@
     "datas",
     "attributes"
   ],
-  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com)",
   "license": "CC0-1.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jonathantneal/postcss-short.git"
-  },
-  "bugs": {
-    "url": "https://github.com/jonathantneal/postcss-short/issues"
-  },
+  "repository": "jonathantneal/postcss-short",
+  "bugs": "https://github.com/jonathantneal/postcss-short/issues",
   "homepage": "https://github.com/jonathantneal/postcss-short",
   "dependencies": {
-    "object-assign": "^4.0.1",
-    "postcss": "^5.0.12",
+    "eslint": "^3.7.0",
+    "eslint-config-10up": "github:jonathantneal/eslint-config-10up",
+    "jscs-config-10up": "github:jonathantneal/jscs-config-10up",
+    "object-assign": "^4.1.0",
+    "postcss": "^5.2.4",
     "postcss-font-weights": "^2.0.1",
     "postcss-short-border": "^1.0.0",
     "postcss-short-color": "^1.0.0",
     "postcss-short-data": "^1.1.0",
-    "postcss-short-font-size": "^1.0.1",
+    "postcss-short-font-size": "^2.0.0",
     "postcss-short-position": "^1.0.0",
-    "postcss-short-size": "^1.0.0",
+    "postcss-short-size": "^1.1.0",
     "postcss-short-spacing": "^1.0.0",
-    "postcss-short-text": "^1.1.0"
+    "postcss-short-text": "^1.1.0",
+    "stylelint-config-10up": "github:jonathantneal/stylelint-config-10up"
   },
   "devDependencies": {
-    "eslint": "^1.9.0",
-    "tap-spec": "^4.1.0",
-    "tape": "^4.2.2"
+    "eslint": "^3.7.0",
+    "jscs": "^3.0.7",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.2"
   },
   "scripts": {
     "lint": "eslint . --ignore-path .gitignore",
@@ -74,5 +74,14 @@
   "engines": {
     "iojs": ">=2.0.0",
     "node": ">=0.12.0"
+  },
+  "eslintConfig": {
+    "extends": "10up"
+  },
+  "jscsConfig": {
+    "preset": "10up"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-10up"
   }
 }

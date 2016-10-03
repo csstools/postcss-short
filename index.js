@@ -1,56 +1,66 @@
 var assign  = require('object-assign');
 var postcss = require('postcss');
 
+var postCSSShortBorder = require('postcss-short-border');
+var postCSSShortColor = require('postcss-short-color');
+var postCSSShortFontSize = require('postcss-short-font-size');
+var postCSSShortPosition = require('postcss-short-position');
+var postCSSShortSize = require('postcss-short-size');
+var postCSSShortSpacing = require('postcss-short-spacing');
+var postCSSShortText = require('postcss-short-text');
+var postCSSFontWeights = require('postcss-font-weights');
+var postCSSShortData = require('postcss-short-data');
+
 var processors = [
 	{
-		plugin:    require('postcss-short-border'),
+		plugin:    postCSSShortBorder,
 		namespace: 'border',
 		defaults:  {}
 	},
 	{
-		plugin:    require('postcss-short-color'),
+		plugin:    postCSSShortColor,
 		namespace: 'color',
 		defaults:  {}
 	},
 	{
-		plugin:    require('postcss-short-font-size'),
+		plugin:    postCSSShortFontSize,
 		namespace: 'font-size',
 		defaults:  {}
 	},
 	{
-		plugin:    require('postcss-short-position'),
+		plugin:    postCSSShortPosition,
 		namespace: 'position',
 		defaults:  {}
 	},
 	{
-		plugin:    require('postcss-short-size'),
+		plugin:    postCSSShortSize,
 		namespace: 'size',
 		defaults:  {}
 	},
 	{
-		plugin:    require('postcss-short-spacing'),
+		plugin:    postCSSShortSpacing,
 		namespace: 'spacing',
 		defaults:  {}
 	},
 	{
-		plugin:    require('postcss-short-text'),
+		plugin:    postCSSShortText,
 		namespace: 'text',
 		defaults:  {}
 	},
 	{
-		plugin:    require('postcss-font-weights'),
+		plugin:    postCSSFontWeights,
 		namespace: 'font-weight',
 		defaults:  {}
 	},
 	{
-		plugin:    require('postcss-short-data'),
+		plugin:    postCSSShortData,
 		namespace: 'data',
 		defaults:  {}
 	}
 ];
 
-module.exports = postcss.plugin('postcss-short', function (opts) {
-	opts = assign({}, opts);
+module.exports = postcss.plugin('postcss-short', function (rawOpts) {
+	var opts = assign({}, rawOpts);
 
 	var instance = postcss();
 
