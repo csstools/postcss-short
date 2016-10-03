@@ -1,3 +1,9 @@
+## 2.0.0 (2016-10-03)
+
+Added: Use shorthand `border-radius` properties
+Updated: Shorthand `font` property divider is now `/`
+Updated: Documentation, and Tests
+
 ## 1.4.0 (2015-12-08)
 
 Added: Use shorthand data attributes `[-name]`

@@ -1,6 +1,6 @@
 {
   "name": "postcss-short",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "Short creates and extends shorthand properties in CSS",
   "keywords": [
     "postcss",
@@ -73,7 +73,6 @@
     "test": "npm run lint && npm run tape"
   },
   "engines": {
-    "iojs": ">=2.0.0",
     "node": ">=0.12.0"
   },
   "eslintConfig": {
