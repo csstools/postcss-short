@@ -1,6 +1,6 @@
 {
   "name": "postcss-short",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Short creates and extends shorthand properties in CSS",
   "keywords": [
     "postcss",
@@ -51,6 +51,7 @@
     "postcss": "^5.2.4",
     "postcss-font-weights": "^2.0.1",
     "postcss-short-border": "^1.0.0",
+    "postcss-short-border-radius": "^1.0.0",
     "postcss-short-color": "^1.0.0",
     "postcss-short-data": "^1.1.0",
     "postcss-short-font-size": "^2.0.0",
@@ -63,7 +64,6 @@
   "devDependencies": {
     "eslint": "^3.7.0",
     "jscs": "^3.0.7",
-    "postcss-short-border-radius": "^1.0.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.2"
   },

@@ -1,3 +1,7 @@
+## 2.0.1 (2016-10-05)
+
+Updated: `postcss-short-border-radius` package
+
 ## 2.0.0 (2016-10-03)
 
 Added: Use shorthand `border-radius` properties
