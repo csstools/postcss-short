@@ -1,22 +1,10 @@
-.banner {
-	border: 1px 2px #343434;
+.example {
+	border: 1px 2px / * / #343434;
 	border-bottom-radius: 10px;
 	color: #abccfc #212231;
 	font-size: 12px/1;
 	font-weight: light;
+	margin: * auto;
 	position: fixed 0 0 *;
 	size: 100% 48px;
-}
-
-.section {
-	margin: 40px;
-	text: bold center uppercase dimgrey 1.25em 1.5 .05em;
-}
-
-.section.inset {
-	margin: * auto;
-}
-
-.menu-item[-active] {
-	background: #f3f3f3;
 }

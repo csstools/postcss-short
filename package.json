@@ -1,7 +1,57 @@
 {
   "name": "postcss-short",
-  "version": "2.0.1",
-  "description": "Short creates and extends shorthand properties in CSS",
+  "version": "3.0.0",
+  "description": "Use advanced shorthand properties in CSS",
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "CC0-1.0",
+  "repository": "jonathantneal/postcss-short",
+  "homepage": "https://github.com/jonathantneal/postcss-short#readme",
+  "bugs": "https://github.com/jonathantneal/postcss-short/issues",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "lint": "echint && eslint index.js && jscs index.js",
+    "prepublish": "npm test",
+    "tape": "postcss-tape",
+    "test": "npm run lint && postcss-tape"
+  },
+  "engines": {
+    "node": ">=6.9.1"
+  },
+  "dependencies": {
+    "postcss": "^5.2.6",
+    "postcss-font-weights": "^3.0.0",
+    "postcss-short-border": "^2.0.0",
+    "postcss-short-border-radius": "^1.0.1",
+    "postcss-short-color": "^2.0.0",
+    "postcss-short-font-size": "^3.0.0",
+    "postcss-short-position": "^2.0.0",
+    "postcss-short-size": "^2.0.0",
+    "postcss-short-spacing": "^2.0.0"
+  },
+  "devDependencies": {
+    "echint": "^2.1.0",
+    "echint-config-dev": "1.0.0",
+    "eslint": "^3.11.1",
+    "eslint-config-dev": "1.0.0",
+    "jscs": "^3.0.7",
+    "jscs-config-dev": "1.0.1",
+    "postcss-tape": "1.0.1"
+  },
+  "echint": {
+    "extends": "dev"
+  },
+  "eslintConfig": {
+    "extends": "dev",
+    "parserOptions": {
+      "sourceType": "module"
+    }
+  },
+  "jscsConfig": {
+    "preset": "dev"
+  },
   "keywords": [
     "postcss",
     "css",
@@ -37,51 +87,5 @@
     "font-family",
     "datas",
     "attributes"
-  ],
-  "author": "Jonathan Neal <jonathantneal@hotmail.com> (http://jonathantneal.com)",
-  "license": "CC0-1.0",
-  "repository": "jonathantneal/postcss-short",
-  "bugs": "https://github.com/jonathantneal/postcss-short/issues",
-  "homepage": "https://github.com/jonathantneal/postcss-short",
-  "dependencies": {
-    "eslint": "^3.7.0",
-    "eslint-config-10up": "github:jonathantneal/eslint-config-10up",
-    "jscs-config-10up": "github:jonathantneal/jscs-config-10up",
-    "object-assign": "^4.1.0",
-    "postcss": "^5.2.4",
-    "postcss-font-weights": "^2.0.1",
-    "postcss-short-border": "^1.0.0",
-    "postcss-short-border-radius": "^1.0.0",
-    "postcss-short-color": "^1.0.0",
-    "postcss-short-data": "^1.1.0",
-    "postcss-short-font-size": "^2.0.0",
-    "postcss-short-position": "^1.0.0",
-    "postcss-short-size": "^1.1.0",
-    "postcss-short-spacing": "^1.0.0",
-    "postcss-short-text": "^1.1.0",
-    "stylelint-config-10up": "github:jonathantneal/stylelint-config-10up"
-  },
-  "devDependencies": {
-    "eslint": "^3.7.0",
-    "jscs": "^3.0.7",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.6.2"
-  },
-  "scripts": {
-    "lint": "eslint . --ignore-path .gitignore",
-    "tape": "tape test.js | tap-spec",
-    "test": "npm run lint && npm run tape"
-  },
-  "engines": {
-    "node": ">=0.12.0"
-  },
-  "eslintConfig": {
-    "extends": "10up"
-  },
-  "jscsConfig": {
-    "preset": "10up"
-  },
-  "stylelint": {
-    "extends": "stylelint-config-10up"
-  }
+  ]
 }

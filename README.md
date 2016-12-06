@@ -1,18 +1,20 @@
-# Short
+# Short <a href="https://github.com/postcss/postcss"><img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right"></a>
 
-<img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
+[![NPM Version][npm-img]][npm-url]
+[![Build Status][cli-img]][cli-url]
+[![Licensing][lic-image]][lic-url]
+[![Changelog][log-image]][log-url]
+[![Gitter Chat][git-image]][git-url]
 
-[![NPM Version][npm-img]][npm] [![Build Status][ci-img]][ci]
+[Short] lets you use advanced shorthand properties in CSS.
 
-[Short] lets you write styles more logically by extending shorthand properties in CSS.
-
-Short has now been featured in **[Smashing Magazine]**! I hope all of these shorthands are useful and clear to first-time lookers. I hope they improve the readability of your stylesheets and save you development time along the way. Thank you so much for your support.
+> Short has been featured in **[Smashing Magazine]**. I hope all of these shorthands are useful and clear to first-time lookers. I hope they improve the readability of your stylesheets and save you development time along the way. Thank you so much for your support.
 
 ## Features
 
 ### Size
 
-Write `width` and `height` together with the `size` property.
+Declare `width` and `height` together with `size`.
 
 ```css
 /* before */
@@ -31,7 +33,7 @@ Write `width` and `height` together with the `size` property.
 
 ### Margin and Padding
 
-Avoid clobbering previous `margin` by using an asterisk, which indicates that an edge is skipped.
+Avoid clobbering previous `margin` or `padding` values with a skip token.
 
 ```css
 /* before */
@@ -50,7 +52,7 @@ Avoid clobbering previous `margin` by using an asterisk, which indicates that an
 
 ### Position
 
-Write `top`, `right`, `bottom`, and `left` in the `position` property using the [clockwise syntax]. Just like before, an asterisk indicates that an edge is skipped.
+Declare `top`, `right`, `bottom`, and `left` values in `position`. Just like before, omit sides with a skip token.
 
 ```css
 /* before */
@@ -71,7 +73,7 @@ Write `top`, `right`, `bottom`, and `left` in the `position` property using the 
 
 ### Color
 
-Write `color` and `background-color` together.
+Declare `color` and `background-color` together.
 
 ```css
 /* before */
@@ -90,13 +92,17 @@ Write `color` and `background-color` together.
 
 ### Border
 
-Define multiple edges on `border` properties using the [clockwise syntax].
+Omit sides within `border-` properties and fully define individual values on the `border` property.
 
 ```css
 /* before */
 
 .container {
-    border: 1px 2px #343434;
+    border: 1px 2px / * / #343434;
+}
+
+.container--variation {
+	border-width: * * 3px;
 }
 
 /* after */
@@ -105,11 +111,15 @@ Define multiple edges on `border` properties using the [clockwise syntax].
     border-width: 1px 2px;
     border-color: #343434;
 }
+
+.container--variation {
+	border-bottom-width: 3px;
+}
 ```
 
 ### Border Radius
 
-Define more `border-radius` properties using the [clockwise syntax].
+Declare `border-radius` properties using the [clockwise syntax].
 
 ```css
 /* before */
@@ -126,15 +136,15 @@ Define more `border-radius` properties using the [clockwise syntax].
 }
 ```
 
-### Font-Size
+### Font Size
 
-Write `font-size` and `line-height` together.
+Declare `font-size` and `line-height` together.
 
 ```css
 /* before */
 
 .heading {
-    font-size: 1.25em 2;
+    font-size: 1.25em / 2;
 }
 
 /* after */
@@ -145,9 +155,9 @@ Write `font-size` and `line-height` together.
 }
 ```
 
-### Font-Weight
+### Font Weight
 
-Write `font-weight` using common names.
+Declare `font-weight` with common names.
 
 ```css
 /* before */
@@ -163,48 +173,6 @@ p {
 }
 ```
 
-### Text
-
-Keep all text properties together with the `text` property.
-
-```css
-/* before */
-
-.section {
-    text: dimgrey bold center uppercase 1.25em 1.5 .05em;
-}
-
-/* after */
-
-.section {
-    color: dimgrey;
-    font-weight: 700;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 1.25em;
-    line-height: 1.5;
-    letter-spacing: .05em;
-}
-```
-
-### Data Attributes
-
-Set `data-` attributes with a shorter attribute selector.
-
-```css
-/* before */
-
-.menu-item[-active] {
-    background: #f3f3f3;
-}
-
-/* after */
-
-.menu-item[data-active] {
-    background: #f3f3f3;
-}
-```
-
 ## Plugins
 
 [Short] is powered by the following plugins:
@@ -216,11 +184,34 @@ Set `data-` attributes with a shorter attribute selector.
 - [Shorthand Position](https://github.com/jonathantneal/postcss-short-position)
 - [Shorthand Size](https://github.com/jonathantneal/postcss-short-size)
 - [Shorthand Spacing](https://github.com/jonathantneal/postcss-short-spacing)
-- [Shorthand Text](https://github.com/jonathantneal/postcss-short-text)
-- [Shorthand Data](https://github.com/jonathantneal/postcss-short-data)
 - [Font Weights](https://github.com/jonathantneal/postcss-font-weights)
 
 Some of these plugins have more features than are described here.
+
+## Options
+
+Each plugin’s options may be configured by targeting the plugin’s namespace. Any plugin may be disabled using a `disable` property set as `true` or by setting the plugin’s options as false.
+
+Example:
+```js
+require('postcss-short')({
+    'font-size': {
+        prefix: 'x'
+    },
+    'position': {
+        disable: true
+    }
+})
+```
+
+```js
+require('postcss-short')({
+    'font-size': {
+        prefix: 'x'
+    },
+    'position': false
+})
+```
 
 ## Usage
 
@@ -305,26 +296,16 @@ grunt.initConfig({
 });
 ```
 
-## Options
-
-Each plugin’s options may be configured by targeting the plugin’s namespace. Any plugins may be disabled by giving them a `disable` property.
-
-Example:
-```js
-require('postcss-short')({
-    'font-size': {
-        prefix: 'x'
-    },
-    'position': {
-        disable: true
-    }
-})
-```
-
-[ci]:      https://travis-ci.org/jonathantneal/postcss-short
-[ci-img]:  https://img.shields.io/travis/jonathantneal/postcss-short.svg
-[npm]:     https://www.npmjs.com/package/postcss-short
+[npm-url]: https://www.npmjs.com/package/postcss-short
 [npm-img]: https://img.shields.io/npm/v/postcss-short.svg
+[cli-url]: https://travis-ci.org/jonathantneal/postcss-short
+[cli-img]: https://img.shields.io/travis/jonathantneal/postcss-short.svg
+[lic-url]: LICENSE.md
+[lic-image]: https://img.shields.io/npm/l/postcss-short.svg
+[log-url]: CHANGELOG.md
+[log-image]: https://img.shields.io/badge/changelog-md-blue.svg
+[git-url]: https://gitter.im/postcss/postcss
+[git-image]: https://img.shields.io/badge/chat-gitter-blue.svg
 
 [clockwise syntax]: https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases
 [ci]: https://travis-ci.org/jonathantneal/postcss-short
