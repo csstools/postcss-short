@@ -1,5 +1,9 @@
 # Changes to Short
 
+### 3.0.1 (December 14, 2016)
+
+- Updated: Plugins
+
 ### 3.0.0 (December 6, 2016)
 
 - Added: A test for a disabled plugin
