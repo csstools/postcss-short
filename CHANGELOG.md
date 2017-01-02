@@ -1,5 +1,10 @@
 # Changes to Short
 
+### 3.0.2 (January 2, 2017)
+
+- Updated: Require all plugins from start
+- Updated: Override plugin#process
+
 ### 3.0.1 (December 14, 2016)
 
 - Updated: Plugins
