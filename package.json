@@ -1,6 +1,6 @@
 {
   "name": "postcss-short",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Use advanced shorthand properties in CSS",
   "author": "Jonathan Neal <jonathantneal@hotmail.com>",
   "license": "CC0-1.0",
@@ -9,7 +9,8 @@
   "bugs": "https://github.com/jonathantneal/postcss-short/issues",
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "example.js"
   ],
   "scripts": {
     "lint": "echint && eslint index.js && jscs index.js",
@@ -52,6 +53,7 @@
   "jscsConfig": {
     "preset": "dev"
   },
+  "runkitExampleFilename": "example.js",
   "keywords": [
     "postcss",
     "css",

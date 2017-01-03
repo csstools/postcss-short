@@ -1,5 +1,9 @@
 # Changes to Short
 
+### 3.0.3 (January 2, 2017)
+
+- Added: Runkit example
+
 ### 3.0.2 (January 2, 2017)
 
 - Updated: Require all plugins from start
