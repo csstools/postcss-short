@@ -1,0 +1,19 @@
+{
+  "name": "gh-pages",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npm run start:codepen && npm run start:index",
+    "start:codepen": "browserify src/codepen.js | babel --presets=es2015 | uglifyjs --compress --mangle > codepen.js",
+    "start:index": "browserify src/index.js | babel --presets=es2015 | uglifyjs --compress --mangle > index.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
+    "browserify": "^14.0.0",
+    "dacoda": "^2.0.0",
+    "postcss-scss": "^0.4.0",
+    "postcss-short": "^3.0.3",
+    "uglify-js": "^2.7.5"
+  }
+}
