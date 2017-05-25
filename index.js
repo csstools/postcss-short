@@ -14,7 +14,10 @@ const plugins = {
 };
 
 // plugin
-module.exports = postcss.plugin('postcss-short', (opts = {}) => {
+module.exports = postcss.plugin('postcss-short', (rawopts) => {
+	// options
+	const opts = Object.assign({}, rawopts);
+
 	// cached processor
 	const processor = postcss();
 
@@ -38,10 +41,3 @@ module.exports = postcss.plugin('postcss-short', (opts = {}) => {
 
 	return processor;
 });
-
-// override plugin#process
-module.exports.process = function (cssString, pluginOptions, processOptions) {
-	return postcss([
-		0 in arguments ? module.exports(pluginOptions) : module.exports()
-	]).process(cssString, processOptions);
-};

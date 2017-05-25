@@ -40,6 +40,8 @@ const processOptions = {};
  * Process the CSS and log it to the console.
  */
 
-require('postcss-short').process(css, pluginOptions, processOptions).then(result => {
-    console.log(result.css);
-});
+require('postcss-short').process(css, pluginOptions, processOptions).then(
+	(result) => {
+		console.log(result.css);
+	}
+);

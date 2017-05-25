@@ -1,10 +1,9 @@
-# Short <a href="https://github.com/postcss/postcss"><img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right"></a>
+# Short [<img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">][postcss]
 
 [![NPM Version][npm-img]][npm-url]
 [![Build Status][cli-img]][cli-url]
-[![Licensing][lic-image]][lic-url]
-[![Changelog][log-image]][log-url]
-[![Gitter Chat][git-image]][git-url]
+[![Windows Build Status][win-img]][win-url]
+[![Gitter Chat][git-img]][git-url]
 
 [Short] lets you use advanced shorthand properties in CSS.
 
@@ -20,14 +19,14 @@ Declare `width` and `height` together with `size`.
 /* before */
 
 .icon {
-    size: 48px;
+  size: 48px;
 }
 
 /* after */
 
 .icon {
-    width: 48px;
-    height: 48px;
+  width: 48px;
+  height: 48px;
 }
 ```
 
@@ -39,14 +38,14 @@ Avoid clobbering previous `margin` or `padding` values with a skip token.
 /* before */
 
 .frame {
-    margin: * auto;
+  margin: * auto;
 }
 
 /* after */
 
 .frame {
-    margin-right: auto;
-    margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 ```
 
@@ -58,16 +57,16 @@ Declare `top`, `right`, `bottom`, and `left` values in `position`. Just like bef
 /* before */
 
 .banner {
-    position: fixed 0 0 *;
+  position: fixed 0 0 *;
 }
 
 /* after */
 
 .banner {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 ```
 
@@ -79,14 +78,14 @@ Declare `color` and `background-color` together.
 /* before */
 
 .canvas {
-    color: #abccfc #212231;
+  color: #abccfc #212231;
 }
 
 /* after */
 
 .canvas {
-    color: #abccfc;
-    background-color: #212231;
+  color: #abccfc;
+  background-color: #212231;
 }
 ```
 
@@ -98,22 +97,22 @@ Omit sides within `border-` properties and fully define individual values on the
 /* before */
 
 .container {
-    border: 1px 2px / * / #343434;
+  border: 1px 2px / * / #343434;
 }
 
 .container--variation {
-	border-width: * * 3px;
+  border-width: * * 3px;
 }
 
 /* after */
 
 .container {
-    border-width: 1px 2px;
-    border-color: #343434;
+  border-width: 1px 2px;
+  border-color: #343434;
 }
 
 .container--variation {
-	border-bottom-width: 3px;
+  border-bottom-width: 3px;
 }
 ```
 
@@ -125,14 +124,14 @@ Declare `border-radius` properties using the [clockwise syntax].
 /* before */
 
 .container {
-	border-bottom-radius: 10px;
+  border-bottom-radius: 10px;
 }
 
 /* after */
 
 .container {
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 ```
 
@@ -144,14 +143,14 @@ Declare `font-size` and `line-height` together.
 /* before */
 
 .heading {
-    font-size: 1.25em / 2;
+  font-size: 1.25em / 2;
 }
 
 /* after */
 
 .heading {
-    font-size: 1.25em;
-    line-height: 2;
+  font-size: 1.25em;
+  line-height: 2;
 }
 ```
 
@@ -163,13 +162,13 @@ Declare `font-weight` with common names.
 /* before */
 
 p {
-    font-weight: light;
+  font-weight: light;
 }
 
 /* after */
 
 p {
-    font-weight: 300;
+  font-weight: 300;
 }
 ```
 
@@ -193,24 +192,25 @@ Some of these plugins have more features than are described here.
 Each plugin’s options may be configured by targeting the plugin’s namespace. Any plugin may be disabled using a `disable` property set as `true` or by setting the plugin’s options as false.
 
 Example:
+
 ```js
 require('postcss-short')({
-    'font-size': {
-        prefix: 'x'
-    },
-    'position': {
-        disable: true
-    }
-})
+  'font-size': {
+    prefix: 'x'
+  },
+  'position': {
+    disable: true
+  }
+});
 ```
 
 ```js
 require('postcss-short')({
-    'font-size': {
-        prefix: 'x'
-    },
-    'position': false
-})
+  'font-size': {
+    prefix: 'x'
+  },
+  'position': false
+});
 ```
 
 ## Usage
@@ -241,7 +241,7 @@ Load [Short] as a PostCSS plugin:
 
 ```js
 postcss([
-    require('postcss-short')({ /* options */ })
+  require('postcss-short')({ /* options */ })
 ]);
 ```
 
@@ -259,13 +259,13 @@ Enable [Short] within your Gulpfile:
 var postcss = require('gulp-postcss');
 
 gulp.task('css', function () {
-    return gulp.src('./css/src/*.css').pipe(
-        postcss([
-            require('postcss-short')({ /* options */ })
-        ])
-    ).pipe(
-        gulp.dest('./css')
-    );
+  return gulp.src('./css/src/*.css').pipe(
+    postcss([
+      require('postcss-short')({ /* options */ })
+    ])
+  ).pipe(
+    gulp.dest('./css')
+  );
 });
 ```
 
@@ -283,16 +283,16 @@ Enable [Short] within your Gruntfile:
 grunt.loadNpmTasks('grunt-postcss');
 
 grunt.initConfig({
-    postcss: {
-        options: {
-            processors: [
-                require('postcss-short')({ /* options */ })
-            ]
-        },
-        dist: {
-            src: 'css/*.css'
-        }
+  postcss: {
+    options: {
+      processors: [
+        require('postcss-short')({ /* options */ })
+      ]
+    },
+    dist: {
+      src: 'css/*.css'
     }
+  }
 });
 ```
 
@@ -300,18 +300,14 @@ grunt.initConfig({
 [npm-img]: https://img.shields.io/npm/v/postcss-short.svg
 [cli-url]: https://travis-ci.org/jonathantneal/postcss-short
 [cli-img]: https://img.shields.io/travis/jonathantneal/postcss-short.svg
-[lic-url]: LICENSE.md
-[lic-image]: https://img.shields.io/npm/l/postcss-short.svg
-[log-url]: CHANGELOG.md
-[log-image]: https://img.shields.io/badge/changelog-md-blue.svg
+[win-url]: https://ci.appveyor.com/project/jonathantneal/postcss-short
+[win-img]: https://img.shields.io/appveyor/ci/jonathantneal/postcss-short.svg
 [git-url]: https://gitter.im/postcss/postcss
-[git-image]: https://img.shields.io/badge/chat-gitter-blue.svg
+[git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 
-[clockwise syntax]: https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases
-[ci]: https://travis-ci.org/jonathantneal/postcss-short
-[ci-img]: https://travis-ci.org/jonathantneal/postcss-short.svg
+[Short]: https://github.com/jonathantneal/postcss-short
+[PostCSS]: https://github.com/postcss/postcss
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
 [Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
-[PostCSS]: https://github.com/postcss/postcss
-[Short]: https://github.com/jonathantneal/postcss-short
-[Smashing Magazine]: http://www.smashingmagazine.com/2015/12/introduction-to-postcss/#extendedshorthandpropertieswithpostcss-short
+[clockwise syntax]: https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties#Tricky_edge_cases
+[Smashing Magazine]: https://www.smashingmagazine.com/2015/12/introduction-to-postcss/#extendedshorthandpropertieswithpostcss-short

@@ -4,7 +4,7 @@ module.exports = {
 			message: 'supports basic usage'
 		},
 		'basic:disable': {
-			message: 'supports basic usage when { fontWeights: false }',
+			message: 'supports { fontWeights: false } usage',
 			options: {
 				fontWeights: false
 			}
