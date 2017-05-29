@@ -89,6 +89,25 @@ Declare `color` and `background-color` together.
 }
 ```
 
+### Overflow
+
+Declare individual `x` and `y` values in `overflow`. Omit sides with a skip
+token.
+
+```css
+/* before */
+
+.scrollable {
+  overflow: * auto;
+}
+
+/* after */
+
+.scrollable {
+  overflow-y: auto;
+}
+```
+
 ### Border
 
 Omit sides within `border-` properties and fully define individual values on the `border` property.
