@@ -7,6 +7,7 @@ const plugins = {
 	borderRadius: require('postcss-short-border-radius'),
 	color:        require('postcss-short-color'),
 	fontSize:     require('postcss-short-font-size'),
+	overflow:     require('postcss-overflow'),
 	position:     require('postcss-short-position'),
 	size:         require('postcss-short-size'),
 	spacing:      require('postcss-short-spacing'),

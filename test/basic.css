@@ -5,6 +5,7 @@
 	font-size: 12px/1;
 	font-weight: light;
 	margin: * auto;
+	overflow: * auto;
 	position: fixed 0 0 *;
 	size: 100% 48px;
 }

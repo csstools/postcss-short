@@ -1,5 +1,9 @@
 # Changes to Short
 
+### 4.1.0 (May 28, 2017)
+
+- Added: PostCSS Overflow
+
 ### 4.0.0 (May 25, 2017)
 
 - Added: Support for PostCSS 6, Node 4
