@@ -1,11 +1,5 @@
 # Changes to Short
 
-### 5.0.0 (May 25, 2017)
-
-- Added: Support for PostCSS 6, Node 4
-- Updated: All dependencies
-- Updated: 2 spaces in Markdown
-
 ### 4.0.0 (May 25, 2017)
 
 - Added: Support for PostCSS 6, Node 4
