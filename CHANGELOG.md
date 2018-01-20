@@ -1,4 +1,4 @@
-# Changes to Short
+# Changes to PostCSS Short
 
 ### 4.1.0 (May 28, 2017)
 

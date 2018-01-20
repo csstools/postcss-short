@@ -1,13 +1,13 @@
-# Short [<img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">][postcss]
+# PostCSS Short [<img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">][postcss]
 
 [![NPM Version][npm-img]][npm-url]
 [![Build Status][cli-img]][cli-url]
 [![Windows Build Status][win-img]][win-url]
 [![Gitter Chat][git-img]][git-url]
 
-[Short] lets you use advanced shorthand properties in CSS.
+[Postcss Short] lets you use advanced shorthand properties in CSS.
 
-> Short has been featured in **[Smashing Magazine]**. I hope all of these shorthands are useful and clear to first-time lookers. I hope they improve the readability of your stylesheets and save you development time along the way. Thank you so much for your support.
+> Postcss Short has been featured in **[Smashing Magazine]**. I hope all of these shorthands are useful and clear to first-time lookers. I hope they improve the readability of your stylesheets and save you development time along the way. Thank you so much for your support.
 
 ## Features
 
@@ -193,7 +193,7 @@ p {
 
 ## Plugins
 
-[Short] is powered by the following plugins:
+[Postcss Short] is powered by the following plugins:
 
 - [Shorthand Border](https://github.com/jonathantneal/postcss-short-border)
 - [Shorthand Border Radius](https://github.com/jonathantneal/postcss-short-border-radius)
@@ -234,9 +234,9 @@ require('postcss-short')({
 
 ## Usage
 
-Follow these steps to use [Short].
+Follow these steps to use [Postcss Short].
 
-Add [Short] to your build tool:
+Add [Postcss Short] to your build tool:
 
 ```bash
 npm install postcss-short --save-dev
@@ -256,7 +256,7 @@ Add [PostCSS] to your build tool:
 npm install postcss --save-dev
 ```
 
-Load [Short] as a PostCSS plugin:
+Load [Postcss Short] as a PostCSS plugin:
 
 ```js
 postcss([
@@ -272,7 +272,7 @@ Add [Gulp PostCSS] to your build tool:
 npm install gulp-postcss --save-dev
 ```
 
-Enable [Short] within your Gulpfile:
+Enable [Postcss Short] within your Gulpfile:
 
 ```js
 var postcss = require('gulp-postcss');
@@ -296,7 +296,7 @@ Add [Grunt PostCSS] to your build tool:
 npm install grunt-postcss --save-dev
 ```
 
-Enable [Short] within your Gruntfile:
+Enable [Postcss Short] within your Gruntfile:
 
 ```js
 grunt.loadNpmTasks('grunt-postcss');
@@ -324,7 +324,7 @@ grunt.initConfig({
 [git-url]: https://gitter.im/postcss/postcss
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 
-[Short]: https://github.com/jonathantneal/postcss-short
+[Postcss Short]: https://github.com/jonathantneal/postcss-short
 [PostCSS]: https://github.com/postcss/postcss
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
 [Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
