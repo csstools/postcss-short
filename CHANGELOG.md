@@ -1,5 +1,11 @@
 # Changes to PostCSS Short
 
+### 5.0.0 (October 10, 2018)
+
+- Added: Support for PostCSS 7, Node 6
+- Added: Support for `prefix` and `skip` option
+- Changed: Features are controlled via `features` option
+
 ### 4.1.0 (May 28, 2017)
 
 - Added: PostCSS Overflow

@@ -1,44 +1,33 @@
-// tooling
-const postcss = require('postcss');
+import postcss from 'postcss';// plugins by name
+import plugins from './lib/plugins';
 
-// plugins by name
-const plugins = {
-	border:       require('postcss-short-border'),
-	borderRadius: require('postcss-short-border-radius'),
-	color:        require('postcss-short-color'),
-	fontSize:     require('postcss-short-font-size'),
-	overflow:     require('postcss-overflow'),
-	position:     require('postcss-short-position'),
-	size:         require('postcss-short-size'),
-	spacing:      require('postcss-short-spacing'),
-	fontWeights:  require('postcss-font-weights')
-};
+export default postcss.plugin('postcss-short', opts => {
+	const features = Object.assign({}, Object(opts).features);
+	const pluginOpts = {};
 
-// plugin
-module.exports = postcss.plugin('postcss-short', (rawopts) => {
-	// options
-	const opts = Object.assign({}, rawopts);
+	if ('prefix' in Object(opts)) {
+		pluginOpts.prefix = opts.prefix;
+	}
 
-	// cached processor
-	const processor = postcss();
+	if ('skip' in Object(opts)) {
+		pluginOpts.skip = opts.skip;
+	}
 
-	// for each plugin
-	Object.keys(plugins).forEach(
-		(name) => {
-			// plugin options by name
-			const pluginOpts = Object.assign({
-				disable: opts[name] === false
-			}, opts[name]);
-
-			// if the plugin is not disabled
-			if (!pluginOpts.disable) {
-				// use the plugin
-				processor.use(
-					plugins[name](pluginOpts)
-				);
-			}
-		}
+	const enabledPlugins = Object.keys(plugins).reduce(
+		(array, name) => features[name] === false
+			? array
+		: array.concat(
+			plugins[name](
+				Object.assign({}, pluginOpts, features[name])
+			)
+		),
+		[]
 	);
 
-	return processor;
+	return (root, result) => enabledPlugins.reduce(
+		(promise, plugin) => promise.then(
+			() => plugin(result.root, result)
+		),
+		Promise.resolve()
+	);
 });

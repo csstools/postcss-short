@@ -1,0 +1,11 @@
+.example {
+	-x-border: 1px 2px / * / #343434;
+	-x-border-bottom-radius: 10px;
+	-x-color: #abccfc #212231;
+	-x-font-size: 12px/1;
+	-x-font-weight: light;
+	-x-margin: * auto;
+	-x-overflow: * auto;
+	-x-position: fixed 0 0 *;
+	-x-size: 100% 48px;
+}
