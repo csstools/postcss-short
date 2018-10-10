@@ -4,10 +4,19 @@ module.exports = {
 			message: 'supports basic usage'
 		},
 		'basic:disable': {
-			message: 'supports { fontWeights: false } usage',
+			message: 'supports { features { fontWeights: false } } usage',
 			options: {
-				fontWeights: false
+				features: {
+					fontWeights: false
+				}
 			}
+		},
+		'prefix': {
+			message: 'supports { prefix: "x" } usage',
+			options: {
+				prefix: 'x'
+			},
+			expect: 'basic.expect.css'
 		}
 	}
 };

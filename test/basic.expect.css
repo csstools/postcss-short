@@ -3,13 +3,13 @@
 	border-color: #343434;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-	color: #abccfc;
 	background-color: #212231;
-	font-size: 12px;
+	color: #abccfc;
 	line-height: 1;
+	font-size: 12px;
 	font-weight: 300;
-	margin-right: auto;
 	margin-left: auto;
+	margin-right: auto;
 	overflow-y: auto;
 	top: 0;
 	right: 0;
